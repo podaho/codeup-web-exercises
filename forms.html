@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register With Us</title>
+</head>
+<body>
+    <!--Changing POST to GET will create a query in the address line-->
+    <form method="POST" action="https://requestb.in/1cmol1o1">
+        <div>
+            <label for="email">
+                Email
+                <!--Removing the name attribute would cause that input value to not be sent to the server-->
+                <input id="email" type="text" name="email" placeholder="YourEmail@email.com">
+            </label>
+        </div>
+        <br>
+        <div>
+            <label for="password1">
+                Password
+                <!--Removing the name attribute would cause that input value to not be sent to the server-->
+                <input id="password1" type="password" name="password1" placeholder="Password">
+            </label>
+        </div>
+        <br>
+        <div>
+            <label for="password2">
+                Confirm Password
+                <!--Removing the name attribute would cause that input value to not be sent to the server-->
+                <input id="password2" type="password" name="password2" placeholder="Confirm Password">
+            </label>
+        </div>
+        <br>
+        <div>
+            <label for="bio">
+                Description
+                <!--Removing the name attribute would cause that input value to not be sent to the server-->
+                <textarea id="bio" name="bio"></textarea>
+            </label>
+        </div>
+        <div>
+            <dl>
+                <dt>How did you hear about us?</dt>
+                <dd>
+                    <label>
+                        <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
+                        <input type="checkbox" name="HowDidYouHearAboutUs" value="billboard">
+                        Billboard
+                    </label>
+                </dd>
+                <dd>
+                    <label>
+                        <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
+                        <input type="checkbox" name="HowDidYouHearAboutUs" value="radio_ad">
+                        Radio Advertisement
+                    </label>
+                </dd>
+                <dd>
+                    <label>
+                        <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
+                        <input type="checkbox" name="HowDidYouHearAboutUs" value="internet_ad">
+                        Internet Advertisement
+                    </label>
+                </dd>
+                <dd>
+                    <label>
+                        <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
+                        <input type="checkbox" name="HowDidYouHearAboutUs" value="other">
+                        Other
+                    </label>
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <label for="brow_choice">Select your browser:</label>
+            <select name="brow_choice" id="brow_choice">
+                <option value="Chrome">Chrome</option>
+                <option value="Safari">Safari</option>
+                <option value="IE">Internet Explorer</option>
+                <option value="FireFox">Firefox</option>
+                <option value="Opera">Opera</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</body>
+</html>
