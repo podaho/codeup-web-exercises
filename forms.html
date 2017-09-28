@@ -11,7 +11,7 @@
             <label for="email">
                 Email
                 <!--Removing the name attribute would cause that input value to not be sent to the server-->
-                <input id="email" type="text" name="email" placeholder="YourEmail@email.com">
+                <input id="email" type="email" name="email" placeholder="YourEmail@email.com">
             </label>
         </div>
         <br>
@@ -44,28 +44,28 @@
                 <dd>
                     <label>
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="HowDidYouHearAboutUs" value="billboard">
+                        <input type="checkbox" name="adType[]" value="billboard">
                         Billboard
                     </label>
                 </dd>
                 <dd>
                     <label>
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="HowDidYouHearAboutUs" value="radio_ad">
+                        <input type="checkbox" name="adType[]" value="radio_ad">
                         Radio Advertisement
                     </label>
                 </dd>
                 <dd>
                     <label>
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="HowDidYouHearAboutUs" value="internet_ad">
+                        <input type="checkbox" name="adType[]" value="internet_ad">
                         Internet Advertisement
                     </label>
                 </dd>
                 <dd>
                     <label>
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="HowDidYouHearAboutUs" value="other">
+                        <input type="checkbox" name="adType[]" value="other">
                         Other
                     </label>
                 </dd>
@@ -84,7 +84,8 @@
         </div>
         <br>
         <div>
-            <input type="submit">
+            <!--<input type="submit">-->
+            <button type="submit">Login</button>
         </div>
     </form>
 </body>
