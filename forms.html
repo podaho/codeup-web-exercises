@@ -6,7 +6,7 @@
 </head>
 <body>
     <!--Changing POST to GET will create a query in the address line-->
-    <form method="POST" action="https://requestb.in/1cmol1o1">
+    <form method="POST" action="https://requestb.in/1bfn95f1">
         <div>
             <label for="email">
                 Email
@@ -38,34 +38,43 @@
                 <textarea id="bio" name="bio"></textarea>
             </label>
         </div>
+        <!--<div>
+            <fieldset>
+                <legend>Title of question</legend>
+                //inputs & labels
+                //inputs & labels
+                //inputs & labels
+                //inputs & labels
+            </fieldset>
+        </div>-->
         <div>
             <dl>
                 <dt>How did you hear about us?</dt>
                 <dd>
-                    <label>
+                    <label for="billboard">
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="adType[]" value="billboard">
+                        <input id="billboard" type="checkbox" name="adType[]" value="billboard">
                         Billboard
                     </label>
                 </dd>
                 <dd>
-                    <label>
+                    <label for="radio_ad">
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="adType[]" value="radio_ad">
+                        <input id="radio_ad" type="checkbox" name="adType[]" value="radio_ad">
                         Radio Advertisement
                     </label>
                 </dd>
                 <dd>
-                    <label>
+                    <label for="internet_ad">
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="adType[]" value="internet_ad">
+                        <input id="internet_ad" type="checkbox" name="adType[]" value="internet_ad">
                         Internet Advertisement
                     </label>
                 </dd>
                 <dd>
-                    <label>
+                    <label for="other">
                         <!--If nothing is selected for the checkboxes, the name of the information wouldn't be passed into the server-->
-                        <input type="checkbox" name="adType[]" value="other">
+                        <input id="other" type="checkbox" name="adType[]" value="other">
                         Other
                     </label>
                 </dd>
