@@ -3,10 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <title>Veridian Dynamics</title>
+        <!--Linked style sheets have the least priority;
+            inline style > embedded style > external style-->
+        <link rel="stylesheet" href="css/style.css">
+        <!--<style>
+            .fancy-header {
+                color: blue;
+                text-decoration: underline;
+            }
+        </style>-->
     </head>
     <body>
         <a id="Top"></a>
-        <h1>Welcome to Veridian Dynamics</h1>
+        <!--Inline style attributes have priority over embedded style sheets;
+            whatever is noted in the inline style attribute will override any
+            style definitions in the embedded sheet-->
+        <h1 class="fancy-header" <!--style="color: red;"-->>Welcome to Veridian Dynamics</h1>
         <p>At Veridian Dynamics, <strong>we</strong> solve <em>your</em> with <strong><em>technology</em></strong>.</p>
         <hr>
         <h2>Core Values</h2>
