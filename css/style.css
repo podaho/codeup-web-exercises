@@ -15,6 +15,7 @@ body {
     background-image: url("../img/pexels-photo-242236.jpeg");
     background-size: contain;
     background-origin: content-box;
+    background-attachment: fixed;
     margin: auto 15%;
 }
 
