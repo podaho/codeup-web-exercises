@@ -1,0 +1,68 @@
+.container {
+    height: 100vh;
+}
+
+.row {
+    width: 100%;
+    height: 12.5vh;
+    float: left;
+    clear: both;
+}
+
+.column {
+    height: inherit;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid black;
+    color: white;
+}
+
+.half, .two-quarters, .three-sixths, four-eighths {
+    width: 50%;
+    background-color: red;
+}
+
+.offset-half {
+    margin-left: 50%;
+}
+
+.third, .two-sixths {
+    width: 33.3333333333%;
+    background-color: orange;
+}
+
+.offset-third {
+    margin-left: 33.3333333333%;
+}
+
+.quarter, .two-eighths {
+    width: 25%;
+    background-color: yellow;
+}
+
+.offset-quarter {
+    margin-left: 25%;
+}
+
+.sixth {
+    width: 16.6666666666%;
+    background-color: green;
+}
+
+.offset-sixth {
+    margin-left: 16.6666666666%;
+}
+
+.eighth {
+    width: 12.5%;
+    background-color: blue;
+}
+
+.offset-eighth {
+    margin-left: 12.5%;
+}
+
+span {
+    vertical-align: middle;
+}
