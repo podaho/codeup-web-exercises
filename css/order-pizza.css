@@ -1,0 +1,19 @@
+.jumbotron-container {
+    text-align: center;
+    width: 100vw;
+    background-color: rgba(256, 256, 256, 0.5);
+}
+
+.jumbotron {
+    background-image: url("../img/pizza.png");
+    background-size: cover;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.content {
+    padding: 0 30px;
+    margin-top: 10px;
+}
