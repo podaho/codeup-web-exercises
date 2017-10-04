@@ -4,13 +4,11 @@
 
 .row {
     width: 100%;
-    height: 12.5vh;
     float: left;
     clear: both;
 }
 
 .column {
-    height: inherit;
     float: left;
     text-align: center;
     box-sizing: border-box;
@@ -20,7 +18,8 @@
 
 .half, .two-quarters, .three-sixths, four-eighths {
     width: 50%;
-    background-color: red;
+    float: left;
+    /*background-color: red;*/
 }
 
 .offset-half {
@@ -29,7 +28,8 @@
 
 .third, .two-sixths {
     width: 33.3333333333%;
-    background-color: orange;
+    float: left;
+    /*background-color: orange;*/
 }
 
 .offset-third {
@@ -38,7 +38,8 @@
 
 .quarter, .two-eighths {
     width: 25%;
-    background-color: yellow;
+    float: left;
+    /*background-color: yellow;*/
 }
 
 .offset-quarter {
@@ -47,7 +48,8 @@
 
 .sixth {
     width: 16.6666666666%;
-    background-color: green;
+    float: left;
+    /*background-color: green;*/
 }
 
 .offset-sixth {
@@ -56,7 +58,18 @@
 
 .eighth {
     width: 12.5%;
-    background-color: blue;
+    float: left;
+    /*background-color: blue;*/
+}
+
+.three-eighths {
+    width: 37.5%;
+    float: left;
+}
+
+.five-eighths {
+    width: 62.5%;
+    float: left;
 }
 
 .offset-eighth {
