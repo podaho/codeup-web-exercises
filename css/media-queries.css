@@ -1,9 +1,4 @@
-/*body {
-    padding: 10px;
-    font-family: Arial;
-}
-
-h2 {
+/*h2 {
     margin: 10px 0px;
 }
 
@@ -20,6 +15,11 @@ footer img {
     margin: 13.25px 2px;
     width: 7%;
 }*/
+
+body {
+    padding: 10px;
+    font-family: Arial;
+}
 
 .lg-screen {
     display: none;
