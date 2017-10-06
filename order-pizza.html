@@ -51,13 +51,13 @@
     <section class="content">
         <h3 class="section-header">Build your own pizza!</h3>
         <hr>
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#snc">Size and Crust</a></li>
-            <li role="presentation"><a href="#cns">Cheese and Sauce</a></li>
-            <li role="presentation"><a href="#tp">Toppings</a></li>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#snc" aria-controls="snc" role="tab" data-toggle="tab">Size and Crust</a></li>
+            <li role="presentation"><a href="#cns" aria-controls="cns" role="tab" data-toggle="tab">Cheese and Sauce</a></li>
+            <li role="presentation"><a href="#tp" aria-controls="tp" role="tab" data-toggle="tab">Toppings</a></li>
         </ul>
         <div class="tab-content clearfix">
-            <!--<div class="tab-pane active" id="snc">-->
+            <div role="tabpanel" class="tab-pane active" id="snc">
                 <!-- Size and crust content area -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -116,8 +116,8 @@
                         </button>
                     </div>
                 </div>
-            <!--</div>
-            <div class="tab-pane" id="cns">-->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="cns">
                 <!-- Cheese and sauce content area -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -176,8 +176,8 @@
                         </div>
                     </div>
                 </div>
-            <!--</div>
-            <div class="tab-pane" id="tp">-->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tp">
                 <!-- Toppings content area -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -254,7 +254,7 @@
                         </button>
                     </div>
                 </div>
-            <!--</div>-->
+            </div>
         </div>
     </section>
 </body>
