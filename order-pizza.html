@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="css/order-pizza.css">
 </head>
 <body>
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,9 +50,18 @@
         <h3 class="section-header">Build your own pizza!</h3>
         <hr>
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#snc" aria-controls="snc" role="tab" data-toggle="tab">Size and Crust</a></li>
-            <li role="presentation"><a href="#cns" aria-controls="cns" role="tab" data-toggle="tab">Cheese and Sauce</a></li>
-            <li role="presentation"><a href="#tp" aria-controls="tp" role="tab" data-toggle="tab">Toppings</a></li>
+            <li role="presentation" class="active"><a href="#snc" aria-controls="snc" role="tab" data-toggle="tab">
+                <span class="badge">1</span>
+                Size and Crust
+            </a></li>
+            <li role="presentation"><a href="#cns" aria-controls="cns" role="tab" data-toggle="tab">
+                <span class="badge">2</span>
+                Cheese and Sauce
+            </a></li>
+            <li role="presentation"><a href="#tp" aria-controls="tp" role="tab" data-toggle="tab">
+                <span class="badge">3</span>
+                Toppings
+            </a></li>
         </ul>
         <div class="tab-content clearfix">
             <div role="tabpanel" class="tab-pane active" id="snc">
@@ -257,5 +264,7 @@
             </div>
         </div>
     </section>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
