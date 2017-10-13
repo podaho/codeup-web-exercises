@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Defuse the BOM</title>
+</head>
+<body>
+
+<h2 id="message">This BOM will self destruct in <span id="timer">5</span> seconds...</h2>
+<button id="defuser1">1</button>
+<button id="defuser2">2</button>
+<button id="defuser3">3</button>
+<button id="defuser4">4</button>
+<button id="defuser5">5</button>
+<button id="defuser6">6</button>
+<button id="defuser7">7</button>
+<button id="defuser8">8</button>
+<button id="defuser9">9</button>
+<button id="defuser0">0</button>
+
+<script>
+(function() {
+    "use strict";
+
+    var detonationTimer = 30;
+    var password = "0114";
+    var input = "";
+    // TODO: This function needs to be called once every second
+    var setIntervalId = setInterval(function updateTimer() {
+            if (detonationTimer == 0) {
+                alert('EXTERMINATE!');
+                document.body.innerHTML = '';
+            } else if (detonationTimer > 0) {
+                document.getElementById('timer').innerHTML = detonationTimer;
+            }
+            detonationTimer--;
+        },1000)
+
+    // TODO: When this function runs, it needs to
+    // cancel the interval/timeout for updateTimer()
+    function defuseTheBOM(e) {
+        if(input.length >= 4) {
+            input = "";
+        }
+        input += e.target.textContent;
+        console.log(input);
+        if(input === password) {
+            clearInterval(setIntervalId);
+            alert('Defused, whew!');
+        }
+    }
+
+    // Don't modify anything below this line!
+    //
+    // This causes the defuseTheBOM() function to be called
+    // when the "defuser" button is clicked.
+    // We will learn about events in the DOM lessons
+    var defuser1 = document.getElementById('defuser1');
+    var defuser2 = document.getElementById('defuser2');
+    var defuser3 = document.getElementById('defuser3');
+    var defuser4 = document.getElementById('defuser4');
+    var defuser5 = document.getElementById('defuser5');
+    var defuser6 = document.getElementById('defuser6');
+    var defuser7 = document.getElementById('defuser7');
+    var defuser8 = document.getElementById('defuser8');
+    var defuser9 = document.getElementById('defuser9');
+    var defuser0 = document.getElementById('defuser0');
+
+    defuser1.addEventListener('click', defuseTheBOM);
+    defuser2.addEventListener('click', defuseTheBOM);
+    defuser3.addEventListener('click', defuseTheBOM);
+    defuser4.addEventListener('click', defuseTheBOM);
+    defuser5.addEventListener('click', defuseTheBOM);
+    defuser6.addEventListener('click', defuseTheBOM);
+    defuser7.addEventListener('click', defuseTheBOM);
+    defuser8.addEventListener('click', defuseTheBOM);
+    defuser9.addEventListener('click', defuseTheBOM);
+    defuser0.addEventListener('click', defuseTheBOM);
+
+})();
+</script>
+</body>
+</html>
