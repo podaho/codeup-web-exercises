@@ -217,3 +217,319 @@ var luckyNumber = Math.floor(Math.random() * 6);
 
 var totalInput = prompt("What's your bill total?");
 alert("Your lucky number is "+luckyNumber+" which leads your bill to be $"+calculateTotal(luckyNumber, totalInput).toFixed()+".");
+
+
+//================================= CONDITIONALS BONUSES
+
+// Bonus 1
+//
+// Create a function that prompts a user for their favorite day of the week and alerts a unique message based on the day.
+// - Catch any invalid inputs.
+// - Write the logic using if/else ifs and then refactor using a switch case
+//
+function favDay() {
+    var input = prompt("What's your favorite day of the week?");
+    /*if(input === "Monday" || input === "monday") {
+        console.log("Nobody likes Mondays, weirdo...");
+    } else if(input === "Tuesday" || input === "tuesday") {
+        console.log("Tuesdays are better tipsy.");
+    } else if(input === "Wednesday" || input === "wednesday") {
+        console.log("You like the hump? I mean I guess...");
+    } else if(input === "Thursday" || input === "thursday") {
+        console.log("THIRSTY THURSDAY!!!!");
+    } else if(input === "Friday" || input === "friday") {
+        console.log("It's Fri-Yay!");
+    } else if(input === "Saturday" || input === "saturday") {
+        console.log("Another day of the weekend, who doesn't like Saturdays");
+    } else if(input === "Sunday" || input === "sunday") {
+        console.log("You either go to church, or you go to brunch, or both.");
+    } else {
+        console.log("I didn't know that "+input+" was a day of the week...");
+    }*/
+    switch(input) {
+        case "Monday":
+        case "monday":
+            console.log("Nobody likes Mondays, weirdo...");
+            break;
+        case "Tuesday":
+        case "tuesday":
+            console.log("Tuesdays are better tipsy.");
+            break;
+        case "Wednesday":
+        case "wednesday":
+            console.log("You like the hump? I mean I guess...");
+            break;
+        case "Thursday":
+        case "thursday":
+            console.log("THIRSTY THURSDAY!!!!");
+            break;
+        case "Friday":
+        case "friday":
+            console.log("It's Fri-Yay!");
+            break;
+        case "Saturday":
+        case "saturday":
+            console.log("Another day of the weekend, who doesn't like Saturdays");
+            break;
+        case "Sunday":
+        case "sunday":
+            console.log("You either go to church, or you go to brunch, or both.");
+            break;
+        default:
+            console.log("I didn't know that "+input+" was a day of the week...");
+            break;
+    }
+}
+
+// Bonus 2
+//
+// Create a function that prompts the user for an input and then alerts if the input is a number or not a number.
+// - use an if/else
+// - refactor to use a ternary operator
+//
+
+function isAN() {
+    var input = prompt("Give me a number:");
+    /*if(!isNaN(input)) {
+        alert("Yep, that's a number!");
+    } else {
+        alert("Nope, not a number!");
+    }*/
+    (!isNaN(input)) ? alert("Yep, that's a number!") : alert("Nope, not a number!");
+}
+
+// Bonus 3
+//
+// Create a function that prompts a user for a season (Spring, Summer, Fall (or Autumn), Winter). The function then alerts the months available in that season and then asks the user to pick a given month. After selecting the month, alert a unique message for the month.
+// - account for any invalid user input
+// - case of input should not matter
+// - accept both abbreviations and full names of the months
+
+function describeAMonth() {
+    var input = prompt("Select a season: Spring, Summer, Fall (or Autumn), Winter");
+    switch(input.toLowerCase()) {
+        case "spring":
+            var input2 = prompt("Select a month in Spring: March, April, or May");
+            switch(input2.toLowerCase()) {
+                case "march":
+                case "mar":
+                case "mar.":
+                    alert("Third month of the year...");
+                    break;
+                case "april":
+                case "apr":
+                case "apr.":
+                    alert("Fourth month of the year...");
+                    break;
+                case "may":
+                    alert("Fifth month of the year...");
+                    break;
+                default:
+                    alert("That's not a month in Spring, stupid!");
+                    break;
+            }
+            break;
+        case "summer":
+            var input2 = prompt("Select a month in Summer: June, July, or August");
+            switch(input2.toLowerCase()) {
+                case "june":
+                case "jun":
+                case "jun.":
+                    alert("Sixth month of the year...");
+                    break;
+                case "july":
+                case "jul":
+                case "jul.":
+                    alert("Seventh month of the year...");
+                    break;
+                case "august":
+                case "aug":
+                case "aug.":
+                    alert("Eighth month of the year...");
+                    break;
+                default:
+                    alert("That's not a month in Summer, stupid!");
+                    break;
+            }
+            break;
+        case "fall":
+        case "autumn":
+            var input2 = prompt("Select a month in Fall: September, October, or November");
+            switch(input2.toLowerCase()) {
+                case "september":
+                case "sep":
+                case "sept":
+                case "sep.":
+                case "sept.":
+                    alert("Ninth month of the year...");
+                    break;
+                case "october":
+                case "oct":
+                case "oct.":
+                    alert("Tenth month of the year...");
+                    break;
+                case "november":
+                case "nov":
+                case "nov.":
+                    alert("Eleventh month of the year...");
+                    break;
+                default:
+                    alert("That's not a month in Fall, stupid!");
+                    break;
+            }
+            break;
+        case "winter":
+            var input2 = prompt("Select a month in Winter: December, January, or February");
+            switch(input2.toLowerCase()) {
+                case "december":
+                case "dec":
+                case "dec.":
+                    alert("Twelfth month of the year...");
+                    break;
+                case "january":
+                case "jan":
+                case "jan.":
+                    alert("First month of the year...");
+                    break;
+                case "february":
+                case "feb":
+                case "feb.":
+                    alert("Second month of the year...");
+                    break;
+                default:
+                    alert("That's not a month in Winter, stupid!");
+                    break;
+            }
+            break;
+        default:
+            alert(input+" is not a season...");
+            break;
+    }
+}
+
+// GOLD STAR BONUS
+//
+// Create a distance unit conversion application.
+//     Prompt the user for a unit of measurement.
+//     Prompt the user for a value.
+//
+//     Prompt the user for a second unit of measurement to convert to.
+//
+//     Define multiple functions to convert: inchesToFeet, feetToMiles, milesToLightYears
+// then the opposite versions: lightYearsToMiles, milesToFeet, feetToInches
+//
+// Use these conversion functions to make the correct unit conversion
+//
+// Potentially, you will need a large switch case to account for the possible unit conversion combinations,
+//     i.e. what conversion functions will need to be called in and in what order.
+//
+//     DOUBLE GOLD STAR BONUS
+//
+//     Allow unit conversion to metric system units
+
+function unitConversion() {
+    var inputUnit = prompt("What unit of measurement would you like to convert?");
+    var inputValue = prompt("Enter value in "+inputUnit.trim());
+    var outputUnit = prompt("What unit of measurement would you like to convert to?");
+
+    var inputInMeters;
+
+    switch(inputUnit.toLowerCase()) {
+        case "inches":
+        case "\"":
+        case "in":
+        case "in.":
+            inputInMeters = parseInt(inputValue)/39.3701;
+            break;
+        case "feet":
+        case "'":
+        case "ft":
+        case "ft.":
+            inputInMeters = parseInt(inputValue)/3.28084;
+            break;
+        case "miles":
+        case "mi":
+        case "mi.":
+            inputInMeters = parseInt(inputValue)*1609.34;
+            break;
+        case "lightyears":
+        case "light years":
+        case "light-years":
+        case "ly":
+        case "ly.":
+            inputInMeters = parseInt(inputValue)*9.461*Math.pow(10,15);
+            break;
+        case "meters":
+        case "m":
+        case "m.":
+            inputInMeters = parseInt(inputValue);
+            break;
+        case "centimeters":
+        case "cm":
+        case "cm.":
+            inputInMeters = parseInt(inputValue)/100;
+            break;
+        case "millimeters":
+        case "mm":
+        case "mm.":
+            inputInMeters = parseInt(inputValue)/1000;
+            break;
+        case "kilometers":
+        case "km":
+        case "km.":
+            inputInMeters = parseInt(inputValue)*1000;
+            break;
+        default:
+            alert(inputUnit+" is not a valid unit for this conversion program!");
+    }
+
+    switch(outputUnit.toLowerCase()) {
+        case "inches":
+        case "\"":
+        case "in":
+        case "in.":
+            return inputInMeters*39.3701;
+            break;
+        case "feet":
+        case "'":
+        case "ft":
+        case "ft.":
+            return inputInMeters*3.28084;
+            break;
+        case "miles":
+        case "mi":
+        case "mi.":
+            return inputInMeters*0.000621371;
+            break;
+        case "lightyears":
+        case "light years":
+        case "light-years":
+        case "ly":
+        case "ly.":
+            return inputInMeters/(9.461*Math.pow(10,15));
+            break;
+        case "meters":
+        case "m":
+        case "m.":
+            return inputInMeters;
+            break;
+        case "centimeters":
+        case "cm":
+        case "cm.":
+            return inputInMeters*100;
+            break;
+        case "millimeters":
+        case "mm":
+        case "mm.":
+            return inputInMeters*1000;
+            break;
+        case "kilometers":
+        case "km":
+        case "km.":
+            return inputInMeters/1000;
+            break;
+        default:
+            alert(inputUnit+" is not a valid unit for this conversion program!");
+            break;
+    }
+}
