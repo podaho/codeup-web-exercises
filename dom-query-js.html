@@ -1,123 +1,115 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>DOM: Query and Modify</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>DOM: Query and Modify</title>
+    </head>
+    <body>
+        <h1 id="main-header">Hello World!</h1>
+        <ul>
+            <li data-dbid="1">Item 1</li>
+            <li data-dbid="2">Item 2</li>
+            <li data-dbid="3">Item 3</li>
+            <li data-dbid="4">Item 4</li>
+            <li data-dbid="5">Item 5</li>
+        </ul>
+        <h2 id="sub-header">Hello Again.</h2>
+        <p class="sub-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <button type="button" id="change-main-header">Change Main Header</button>
+        <button type="button" id="change-sub-header">Change Sub-Header</button>
+        <button type="button" id="change-list-items">Change List Items</button>
+        <button type="button" id="change-sub-para">Change Sub-Paragraph</button>
 
-<h1 id="main-header">Hello World!</h1>
-<ul>
-    <li data-dbid="1">Item 1</li>
-    <li data-dbid="2">Item 2</li>
-    <li data-dbid="3">Item 3</li>
-    <li data-dbid="4">Item 4</li>
-    <li data-dbid="5">Item 5</li>
-</ul>
-<h2 id="sub-header">Hello Again.</h2>
-<p class="sub-paragraph">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-    aliquip ex ea commodo consequat. Duis aute irure dolor in
-    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-    culpa qui officia deserunt mollit anim id est laborum.
-</p>
-<button type="button" id="change-main-header">Change Main Header</button>
-<button type="button" id="change-sub-header">Change Sub-Header</button>
-<button type="button" id="change-list-items">Change List Items</button>
-<button type="button" id="change-sub-para">Change Sub-Paragraph</button>
+        <script>
+            (function() {
+                "use strict";
 
-<script>
-    (function() {
-        "use strict";
-
-        var listener1 = function(e) {
-            var mainHeader = document.getElementById("main-header");
-            mainHeader.innerHTML = "JavaScript is Cool";
-            btn1.removeEventListener('click',listener1,false);
-            btn1.addEventListener('click',listener1_c,false);
-        }
-
-        var listener1_c = function(e) {
-            var mainHeader = document.getElementById("main-header");
-            mainHeader.innerHTML = "Hello World!";
-            btn1.removeEventListener('click',listener1_c,false);
-            btn1.addEventListener('click',listener1,false);
-        }
-
-        var listener2 = function(e) {
-            var subHeader = document.getElementById("sub-header");
-            subHeader.setAttribute("style","color: blue;");
-            btn2.removeEventListener('click',listener2,false);
-            btn2.addEventListener('click',listener2_c,false);
-
-        }
-
-        var listener2_c = function(e) {
-            var subHeader = document.getElementById("sub-header");
-            subHeader.removeAttribute("style");
-            btn2.removeEventListener('click',listener2_c,false);
-            btn2.addEventListener('click',listener2,false);
-        }
-
-        var listener3 = function(e) {
-            var listItems = document.getElementsByTagName("li");
-            for(var i = 0; i < listItems.length; i++) {
-                if(i % 2 === 0) {
-                    listItems[i].setAttribute("style", "color: grey");
+                var listener1 = function(e) {
+                    var mainHeader = document.getElementById("main-header");
+                    mainHeader.innerHTML = "JavaScript is Cool";
+                    btn1.removeEventListener('click',listener1,false);
+                    btn1.addEventListener('click',listener1_c,false);
                 }
-                if(listItems[i].getAttribute("data-dbid") == "1") {
-                    listItems[i].setAttribute("style", "color: blue");
+
+                var listener1_c = function(e) {
+                    var mainHeader = document.getElementById("main-header");
+                    mainHeader.innerHTML = "Hello World!";
+                    btn1.removeEventListener('click',listener1_c,false);
+                    btn1.addEventListener('click',listener1,false);
                 }
-            }
-            btn3.removeEventListener('click',listener3,false);
-            btn3.addEventListener('click',listener3_c,false);
-        }
 
-        var listener3_c = function(e) {
-            var listItems = document.getElementsByTagName("li");
-            for(var i = 0; i < listItems.length; i++) {
-                listItems[i].removeAttribute("style");
-            }
-            btn3.removeEventListener('click',listener3_c,false);
-            btn3.addEventListener('click',listener3,false);
-        }
+                var listener2 = function(e) {
+                    var subHeader = document.getElementById("sub-header");
+                    subHeader.setAttribute("style","color: blue;");
+                    btn2.removeEventListener('click',listener2,false);
+                    btn2.addEventListener('click',listener2_c,false);
 
-        var listener4 = function(e) {
-            var subParagraphs = document.getElementsByClassName("sub-paragraph");
-            subParagraphs[0].innerHTML = "Mission Accomplished!";
-            btn4.removeEventListener('click',listener4,false);
-            btn4.addEventListener('click',listener4_c,false);
-        }
+                }
 
-        var listener4_c = function(e) {
-            var subParagraphs = document.getElementsByClassName("sub-paragraph");
-            subParagraphs[0].innerHTML =
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\n" +
-                " eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\n" +
-                " ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut\n" +
-                " aliquip ex ea commodo consequat. Duis aute irure dolor in\n" +
-                " reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\n" +
-                " pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\n" +
-                " culpa qui officia deserunt mollit anim id est laborum.";
-            btn4.removeEventListener('click',listener4_c,false);
-            btn4.addEventListener('click',listener4,false);
-        }
+                var listener2_c = function(e) {
+                    var subHeader = document.getElementById("sub-header");
+                    subHeader.removeAttribute("style");
+                    btn2.removeEventListener('click',listener2_c,false);
+                    btn2.addEventListener('click',listener2,false);
+                }
 
-        var btn1 = document.getElementById("change-main-header");
-        btn1.addEventListener('click',listener1,false);
+                var listener3 = function(e) {
+                    var listItems = document.getElementsByTagName("li");
+                    for(var i = 0; i < listItems.length; i++) {
+                        if(i % 2 === 0) {
+                            listItems[i].setAttribute("style", "color: grey");
+                        }
+                        if(listItems[i].getAttribute("data-dbid") == "1") {
+                            listItems[i].setAttribute("style", "color: blue");
+                        }
+                    }
+                    btn3.removeEventListener('click',listener3,false);
+                    btn3.addEventListener('click',listener3_c,false);
+                }
 
-        var btn2 = document.getElementById("change-sub-header");
-        btn2.addEventListener('click',listener2,false);
+                var listener3_c = function(e) {
+                    var listItems = document.getElementsByTagName("li");
+                    for(var i = 0; i < listItems.length; i++) {
+                        listItems[i].removeAttribute("style");
+                    }
+                    btn3.removeEventListener('click',listener3_c,false);
+                    btn3.addEventListener('click',listener3,false);
+                }
 
-        var btn3 = document.getElementById("change-list-items");
-        btn3.addEventListener('click',listener3,false);
+                var listener4 = function(e) {
+                    var subParagraphs = document.getElementsByClassName("sub-paragraph");
+                    subParagraphs[0].innerHTML = "Mission Accomplished!";
+                    btn4.removeEventListener('click',listener4,false);
+                    btn4.addEventListener('click',listener4_c,false);
+                }
 
-        var btn4 = document.getElementById("change-sub-para");
-        btn4.addEventListener('click',listener4,false);
-    })();
-</script>
-</body>
+                var listener4_c = function(e) {
+                    var subParagraphs = document.getElementsByClassName("sub-paragraph");
+                    subParagraphs[0].innerHTML = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                    btn4.removeEventListener('click',listener4_c,false);
+                    btn4.addEventListener('click',listener4 ,false);
+                }
+
+                var btn1 = document.getElementById("change-main-header");
+                btn1.addEventListener('click',listener1,false);
+
+                var btn2 = document.getElementById("change-sub-header");
+                btn2.addEventListener('click',listener2,false);
+
+                var btn3 = document.getElementById("change-list-items");
+                btn3.addEventListener('click',listener3,false);
+
+                var btn4 = document.getElementById("change-sub-para");
+                btn4.addEventListener('click',listener4,false);
+            })();
+        </script>
+    </body>
 </html>

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+.codeBlock {
+    font-family: 'Inconsolata';
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.answers {
+    font-family: 'Inconsolata';
+    margin-bottom: 10px;
+    color: darkslategray;
+    font-weight: bolder;
+}
+
+.multiline-answers {
+    font-family: 'Inconsolata';
+    color: darkslategray;
+    font-weight: bolder;
+}
+
+.multiline-answers:after {
+    margin-bottom: 10px;
+}
+
+.codeBlock>p {
+    margin: 0;
+}
