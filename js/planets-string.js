@@ -27,7 +27,17 @@
     console.log(planetsString);
 
     planetsString = "<ul>\n\t<li>";
-    planetsString += planetsArray.join("\n\t<li>");
-    planetsString += "\n<ul>";
+    planetsString += planetsArray.join("</li>\n\t<li>");
+    planetsString += "</li>\n<ul>";
     console.log(planetsString);
+
+    var thing = "";
+    for(var i = 0; i < planetsArray.length; i += 1) {
+        thing += "<li>"+planetsArray[i]+"</li>";
+        if(i !== planetsArray.length-1) {
+            thing += "\n\t";
+        }
+    }
+    thing = "<ul>\n\t"+thing+"\n</ul>";
+    console.log(thing);
 })();

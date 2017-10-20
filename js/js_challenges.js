@@ -163,3 +163,53 @@ function findIndexWhereSumIs9(arr) {
 console.log(findIndexWhereSumIs9([[1, 2], [3, 4], [4, 5], [9, 1]]))    // returns 2
 console.log(findIndexWhereSumIs9([[10, 2], [11, -2], [2, 5], [9, 1]])) // returns 1
 console.log(findIndexWhereSumIs9([[10, 2], [11, -7], [2, 5], [9, 1]])) // returns -1
+
+
+// Create a function that simulates rolling dice named roll. Your function should allow the caller to indicate how many dice to roll, as well as how many sides each dice has. This information will be passed as a string, which you will need to parse, and your function should return the sum of all the dice rolls.
+//
+// An n sided dice is notated as a dn where n is the number of sides the dice has. For example, a d6 has six sides (and contains the numbers 1 through 6), and a d12 has 12 sides (and contains the numbers 1 through 12). "Rolling" a dice can be modeled as choosing a random number in the range of the sides of the dice.
+//
+// Multiple dice rolls are notated as prefixing the dice description with an integer. For example, 3d4 means 3 4-sided dice, and 10d6 means 10 6-sided dice.
+//
+// > roll('10d6')
+// 42
+// > roll('10d6')
+// 37
+// So roll('10d6') will roll 10 six sided dice (generate 10 random numbers between 1 and 6), and return the sum of those rolls.
+
+function roll(input) {
+    var argArr = input.toLowerCase().split('d');
+    var random;
+    var sum = 0;
+    for(var i = 0; i < parseInt(argArr[0]); i++) {
+        random = Math.floor(Math.random()*parseInt(argArr[1]))+1;
+        console.log("Dice #"+(i+1)+" rolled a "+random);
+        sum += random;
+    }
+    console.log("The total after "+argArr[0]+" "+argArr[1]+" sided die is "+sum);
+    return sum;
+}
+
+// Bonus bonus
+//
+// Have your roll function return an array where the first element is the sum of the rolled dice, and the second element is an array that contains each individual roll.
+//
+// > roll('10d6')
+//     [ 42, [ 3, 5, 3, 5, 5, 1, 6, 3, 6, 5 ] ]
+// > roll('10d6')
+//     [ 37, [ 4, 6, 5, 5, 2, 6, 3, 3, 1, 2 ] ]
+
+function rollArr(input) {
+    var argArr = input.toLowerCase().split('d');
+    var random;
+    var nums = [];
+    var sum = 0;
+    for(var i = 0; i < parseInt(argArr[0]); i++) {
+        random = Math.floor(Math.random()*parseInt(argArr[1]))+1;
+        console.log("Dice #"+(i+1)+" rolled a "+random);
+        nums.push(random);
+        sum += random;
+    }
+    console.log("The total after "+argArr[0]+" "+argArr[1]+" sided die is "+sum);
+    return [sum, nums];
+}
