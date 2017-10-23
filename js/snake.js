@@ -115,4 +115,32 @@ function genFruit() {
     div.setAttribute("fruit", "yum");
 }
 
+function reset() {
+    if(setIntervalId) {
+        clearInterval(setIntervalId);
+    }
+    snakeArr.forEach(function (elem, index, array) {
+        var div = document.getElementById("x" + elem[0] + "y" + elem[1]);
+        //console.log(div);
+        div.removeAttribute("style");
+        div.removeAttribute("snake");
+    });
+    direction = 2;
+    interval = 100;
+    snakeArr = [[50,25],[50,26],[50,27],[50,28],[50,29]];
+    dead = false;
+    score = 0;
+    console.log(interval);
+    setIntervalId = setInterval(function() {
+        if(dead) {
+            clearInterval(setIntervalId);
+            alert("Game Over!\nYour Final Score: "+score);
+        } else {
+            move(direction);
+            scoreDiv.innerHTML = "Your Score: "+score+" Pts";
+        }
+    },interval);
+}
+
 window.addEventListener("keydown", handleKeys, false);
+document.getElementById("reset").addEventListener("click", reset, false);

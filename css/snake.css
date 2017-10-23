@@ -10,6 +10,11 @@ div#game {
     height: 100%;
 }
 
+#score, #reset {
+    float: left;
+    margin: 10px;
+}
+
 .border {
     background-color: gray;
 }
