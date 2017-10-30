@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Maps API</title>
+    <style type="text/css">
+        #map {
+            width: 600px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5uR5lV2F4v_tIkmtejRIzjTrKZeDHNIk"></script>
+
+    <script type="text/javascript">
+        (function() {
+            "use strict";
+
+            function mapConstructor(id, zoom, center, mapType) {
+                var mapOptions = {
+                    zoom: zoom,
+                    center: center,
+                    mapTypeId: mapType
+                };
+
+                return new google.maps.Map(document.getElementById(id), mapOptions);
+            }
+
+            function markerConstructor(position, animation, map) {
+                return new google.maps.Marker({
+                    position: position,
+                    animation: animation,
+                    map: map
+                });
+            }
+
+            function infoWindowConstructor(content) {
+                return new google.maps.InfoWindow({
+                    content: content
+                });
+            }
+
+            function parseHours(hours) {
+                var retStr = "";
+                hours.forEach(function(elem) {
+                    retStr += "<dd>"+elem+"</dd>"
+                });
+                return retStr;
+            }
+
+            function findCenter(coords) {
+                var latLrg = Number.MIN_VALUE;
+                var latSml = Number.MAX_VALUE;
+                var lngLrg = Number.MIN_VALUE;
+                var lngSml = Number.MAX_VALUE;
+                coords.forEach(function(elem) {
+                    if(elem[0] > latLrg) {
+                        latLrg = elem[0];
+                    }
+                    if(elem[0] < latSml) {
+                        latSml = elem[0];
+                    }
+                    if(elem[1] > lngLrg) {
+                        lngLrg = elem[1];
+                    }
+                    if(elem[1] < lngSml) {
+                        lngSml = elem[1];
+                    }
+                });
+                return { lat: (latSml + (latLrg - latSml)/2), lng: (lngSml + (lngLrg - lngSml)/2) };
+            }
+
+            function geocodedMapConstructor(locations) {
+                var geocoder = new google.maps.Geocoder();
+                var coords = [];
+                locations.forEach(function(location) {
+                    geocoder.geocode({ "address": location.address }, function(results, status) {
+                        if(status == google.maps.GeocoderStatus.OK) {
+                            coords.push([results[0].geometry.location.lat(),results[0].geometry.location.lng()]);
+                        } else {
+                            alert('Geocoding '+location.address+' Failure -- STATUS: '+status);
+                        }
+                    });
+                });
+
+                var center = findCenter(coords);
+
+                var map = mapConstructor(
+                    "map",
+                    10,
+                    center,
+                    google.maps.MapTypeId.HYBRID
+                );
+
+                coords.forEach(function(elem) {
+                    var marker = markerConstructor({ lat: elem[0], lng: elem[1] }, google.maps.Animation.DROP, map);
+
+                    marker.addListener('click', function() {
+                        //console.log(google.maps.InfoWindow.prototype.isOpen);
+                        if(!google.maps.InfoWindow.prototype.isOpen) {
+                            infoWindow.open(map, marker);
+                            google.maps.InfoWindow.prototype.isOpen = true;
+                        } else {
+                            infoWindow.close();
+                            google.maps.InfoWindow.prototype.isOpen = false;
+                            map.setCenter(center);
+                        }
+                    });
+                });
+
+                var hours = parseHours([location.locHours]);
+
+                var content = "<div style='width: 200px'>"+
+                    "<h1 style='text-align: center'><strong>"+location.locName+"</strong></h1>"+
+                    "<p>"+location.locDesc+"</p>"+
+                    "<dl>"+
+                    "<dt><strong>Hours</strong></dt>"+
+                    hours+
+                    "</dl>"+
+                    "</div>";
+
+                var infoWindow = infoWindowConstructor(content);
+
+//                var setIntervalId = setInterval(function() {
+//                    map.setZoom(zoomStep);
+//                    if(zoomStep < 19) {
+//                        zoomStep += 5;
+//                    } else {
+//                        clearInterval(setIntervalId);
+//                    }
+//                }, 2000)
+            }
+
+            var north = {
+                address: "11506 Century Oaks Terrace #124, Austin, TX 78758",
+                locName: "North Italia",
+                locDesc: "The Domain's buzzy, modern option with a patio for thin-crust pizzas & sophisticated Italian fare.",
+                locHours: ["Mon-Thurs: 11AM-10PM", "Fri-Sat: 11AM-11PM", "Sun: 11AM-9PM"]
+            };
+
+            geocodedMapConstructor([north]);
+        })();
+    </script>
+</body>
+</html>
