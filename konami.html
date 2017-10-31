@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+    <h1 style="text-align: center">Up Up Down Down Left Right Left Right B A Enter</h1>
+    <h1 style="color: white; text-align: center; margin: 35vh 0;">YOU ADDED 30 LIVES!</h1>
+    <img id="img1" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img2" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img3" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img4" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img5" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img6" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img7" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img8" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img9" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+    <img id="img10" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
+
+    </div>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script>
+        "use strict";
+        
+        var keyArr = [];
+
+        function checkArr() {
+            const code = [38,38,40,40,37,39,37,39,66,65,13];
+            var correct = true;
+            for(var i = 0; i < code.length; i++) {
+                if(code[i] !== keyArr[i]) {
+                    correct = false;
+                    break;
+                }
+            }
+            if(correct) {
+                // alert('You have added 30 lives!')
+                flash();
+            }
+        }
+
+        function flash() {
+            var x = 0;
+            var heartArr = [];
+            for(var i = 0; i < 10; i++) {
+                heartArr.push(makeHeart());
+            }
+            console.log(heartArr);
+            setInterval(function() {
+                var colorHex = Math.round(Math.sin(x/100)*128+127).toString(16).length === 1 ? 0+Math.round(Math.sin(x/100)*128+127).toString(16) : Math.round(Math.sin(x/100)*128+127).toString(16);
+                $('body').css('background-color','#'+colorHex+colorHex+colorHex);
+                for(var i = 1; i <= 10; i++) {
+                    heartArr[i-1].render(x, 'img'+i);
+                }
+                x++;
+            }, 1);
+        }
+
+        function makeHeart() {
+            var rando = Math.floor(Math.random()*500)+1;
+            var rando2 = Math.floor(Math.random()*screen.width)+1;
+            return {
+                yPos: rando,
+                delay: rando2,
+                render: function(t, id) {
+                    $('#'+id)
+                        .css('top',(Math.sin(((t-this.delay)-100)/50)*50+this.yPos)+1+'px')
+                        .css('right', (((t-this.delay)%screen.width)-100)+'px')
+                        .css('width', (Math.sin(((t-this.delay)/100))*30+70)+'px');
+                }
+            };
+        }
+
+        $(document).keydown(function(event){
+            keyArr.push(event.keyCode);
+            console.log(event.keyCode);
+            if(keyArr.length > 11) {
+                keyArr.shift();
+            }
+            if(keyArr.length == 11) {
+                checkArr();
+            }
+            console.log(keyArr);
+        });
+    </script>
+</body>
+</html>
