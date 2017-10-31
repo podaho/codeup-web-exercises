@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery FAQ</title>
+</head>
+<body>
+    <dl>
+        <dt>FAQ #1</dt>
+        <dd>Yellowstone may not have been the first national park.</dd>
+        <dt>FAQ #2</dt>
+        <dd>The second U.S. national park is now a state park.</dd>
+        <dt>FAQ #3</dt>
+        <dd>NPS was founded 44 years after Yellowstone was signed in.</dd>
+        <dt>FAQ #4</dt>
+        <dd>The park ranger uniform was created by the U.S. Army Cavalry.</dd>
+        <dt>FAQ #5</dt>
+        <dd>NPS oversees more than 400 units.</dd>
+        <dt>FAQ #6</dt>
+        <dd>The U.S. government loans land from locals.</dd>
+        <dt>FAQ #7</dt>
+        <dd>The Carlsbad Caverns lunchroom debate continues.</dd>
+        <dt>FAQ #8</dt>
+        <dd>Visitors were once encouraged to watch bears eat from dumpsters.</dd>
+        <dt>FAQ #9</dt>
+        <dd>Theodore Roosevelt NP was Teddy's mourning location.</dd>
+        <dt>FAQ #10</dt>
+        <dd>A Shenandoah NP park ranger was hit by lightning seven times in his career.</dd>
+    </dl>
+    <script src='js/jquery-2.2.4.js'></script>
+    <script>
+        "use strict";
+
+        $(document).ready(function() {
+            function turnOn(e) {
+                $(e.target).next().css('display', 'block');
+            }
+
+            function turnOff(e) {
+                $(e.target).next().css('display', 'none');
+            }
+
+            function highlight(e) {
+                console.log('clicked');
+                $(e.target).toggleClass('highlighted');
+                $('.highlighted').css('background-color', 'yellow');
+            }
+
+            $('dd')
+                .addClass('invisible')
+                .css('display','none');
+
+            $('dt')
+                .hover(turnOn, turnOff)
+                .click(highlight);
+        });
+    </script>
+</body>
+</html>
