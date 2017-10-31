@@ -5,24 +5,18 @@
 </head>
 <body>
     <h1 style="text-align: center">Up Up Down Down Left Right Left Right B A Enter</h1>
-    <h1 style="color: white; text-align: center; margin: 35vh 0;">YOU ADDED 30 LIVES!</h1>
-    <img id="img1" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img2" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img3" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img4" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img5" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img6" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img7" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img8" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img9" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-    <img id="img10" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">
-
-    </div>
+    <h1 id="last" style="color: white; text-align: center; margin: 35vh 0;">YOU ADDED 30 LIVES!</h1>
+    
     <script src="js/jquery-2.2.4.js"></script>
     <script>
         "use strict";
         
         var keyArr = [];
+        var numHearts = 30;
+
+        for(var i = 1; i <= numHearts; i++) {
+            $('#last').append('<img id="img'+i+'" src="heart.png" alt="heart" style="width: 100px; position: fixed; top: 250px; right: -100px;">')
+        }
 
         function checkArr() {
             const code = [38,38,40,40,37,39,37,39,66,65,13];
@@ -42,14 +36,14 @@
         function flash() {
             var x = 0;
             var heartArr = [];
-            for(var i = 0; i < 10; i++) {
+            for(var i = 0; i < numHearts; i++) {
                 heartArr.push(makeHeart());
             }
             console.log(heartArr);
             setInterval(function() {
                 var colorHex = Math.round(Math.sin(x/100)*128+127).toString(16).length === 1 ? 0+Math.round(Math.sin(x/100)*128+127).toString(16) : Math.round(Math.sin(x/100)*128+127).toString(16);
                 $('body').css('background-color','#'+colorHex+colorHex+colorHex);
-                for(var i = 1; i <= 10; i++) {
+                for(var i = 1; i <= numHearts; i++) {
                     heartArr[i-1].render(x, 'img'+i);
                 }
                 x++;
