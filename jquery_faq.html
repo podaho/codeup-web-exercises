@@ -7,6 +7,9 @@
     <title>jQuery FAQ</title>
 </head>
 <body>
+    <div id="newsletter" style="height: 80px">
+        <h1 id="header">Would you like to sign up for our newsletter? <span id="x">x</span></h1>
+    </div>
     <dl>
         <dt>FAQ #1</dt>
         <dd>Yellowstone may not have been the first national park.</dd>
@@ -77,6 +80,9 @@
             <button style="display: block; width: 40%; margin: 20px auto;" id="br">SWAP</button>
         </div>
     </div>
+    <div id="ad-banner" style="position: fixed; top: 0; right: 0; width: 100%; background: white; border-bottom: 5px solid black; text-align: center;">
+        <h2>Register for the site now!</h2>
+    </div>
     <script src='js/jquery-2.2.4.js'></script>
     <script>
         "use strict";
@@ -94,6 +100,17 @@
                 $(e.target).toggleClass('highlighted');
                 $('.highlighted').css('background-color', 'yellow');
             }
+
+            $('#ad-banner').hide();
+
+            var intervalId = setInterval(function() {
+                $('#ad-banner').slideDown(1000);
+                clearInterval(intervalId);
+            }, 8000);
+
+            $('#newsletter').hide().slideDown(1000);
+
+            $('ul').hide();
 
             $('dd')
                 .addClass('invisible')
@@ -113,10 +130,12 @@
 
             $('h3').click(function() {
                 if($(this).next().children().css('font-weight') === 'bold') {
+                    $(this).next().slideUp(1000);
                     $(this).next().children().each(function() {
                         $(this).css('font-weight', '');
                     });
                 } else {
+                    $(this).next().slideDown(1000);
                     $(this).next().children().each(function() {
                         $(this).css('font-weight', 'bold');
                     });
@@ -156,6 +175,14 @@
                 var oldCenter = $(this).parent().prev().children().first().html();
                 $(this).prev().html(oldCenter);
                 $(this).parent().prev().children().first().html(oldRight);
+            });
+
+            $('#x').click(function() {
+                $('#newsletter').fadeOut(1000);
+            });
+
+            $('#ad-banner').click(function() {
+                $(this).slideUp(1000);
             });
         });
     </script>
