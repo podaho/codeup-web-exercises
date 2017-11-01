@@ -29,6 +29,54 @@
         <dt>FAQ #10</dt>
         <dd>A Shenandoah NP park ranger was hit by lightning seven times in his career.</dd>
     </dl>
+    <br>
+    <h3>Grand Canyon National Park</h3>
+    <ul>
+        <li>The Grand Canyon is found in the US state of Arizona.</li>
+        <li>Many people consider it to be one of the seven wonders of the natural world.</li>
+        <li>The Grand Canyon is 277 miles (446 kilometres) in length.</li>
+        <li>At its widest point the Grand Canyon stretches 18 miles (29 kilometres) across.</li>
+    </ul>
+    <button id="gcbtn">CLICK ME!</button>
+    <br>
+    <h3>Yosemite National Park</h3>
+    <ul>
+        <li>There is a granite formation in Yosemite called the Half Dome. It reaches 5,000 feet above the floor of the valley.</li>
+        <li>The park is located in the Sierra Nevada Mountains.</li>
+        <li>It is believed that a glacier is responsible for producing the shape of Yosemite Valley.</li>
+        <li>20% of California's 7,000 plant species are found within Yosemite.</li>
+    </ul>
+    <button id="ybtn">CLICK ME!</button>
+    <br>
+    <h3>Yellowstone National Park</h3>
+    <ul>
+        <li>Yellowstone was established on March 1, 1872.</li>
+        <li>It is the world's first national park.</li>
+        <li>It contains 3,472 square miles and measures 63 miles north to south and 54 miles east to west.</li>
+        <li>The park is 96% in Wyoming, 3% in Montana, and 1% in Idaho.</li>
+    </ul>
+    <button id="ysbtn">CLICK ME!</button>
+    <br>
+    <div style="display: block; width: 747px; margin: 0 auto">
+        <div style="margin: 50px 20px 0px 20px; float: left">
+            <div style="width: 209px; height: 303px;" class="card" id="card-left">
+                <img id="cl" style="width: 100%; border: 5px solid maroon; border-radius: 15px;" src="https://upload.wikimedia.org/wikipedia/commons/0/07/Ace_of_hearts.svg" alt="hearts">
+            </div>
+            <button style="display: block; width: 40%; margin: 20px auto;" id="bl">SWAP</button>
+        </div>
+        <div style="margin: 50px 20px 0px 20px; float: left">
+            <div style="width: 209px; height: 303px;" class="card" id="card-center">
+                <img id="cc" style="width: 100%; border: 5px solid maroon; border-radius: 15px;" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Ace_of_spades.svg" alt="spades">
+            </div>
+            <button style="display: block; width: 40%; margin: 20px auto;" id="bc">SWAP</button>
+        </div>
+        <div style="margin: 50px 20px 0px 20px; float: left">
+            <div style="width: 209px; height: 303px;" class="card" id="card-right">
+                <img id="cr" style="width: 100%; border: 5px solid maroon; border-radius: 15px;" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Ace_of_diamonds.svg" alt="diamonds">
+            </div>
+            <button style="display: block; width: 40%; margin: 20px auto;" id="br">SWAP</button>
+        </div>
+    </div>
     <script src='js/jquery-2.2.4.js'></script>
     <script>
         "use strict";
@@ -43,7 +91,6 @@
             }
 
             function highlight(e) {
-                console.log('clicked');
                 $(e.target).toggleClass('highlighted');
                 $('.highlighted').css('background-color', 'yellow');
             }
@@ -55,6 +102,61 @@
             $('dt')
                 .hover(turnOn, turnOff)
                 .click(highlight);
+
+            $('#gcbtn, #ybtn, #ysbtn').click(function() {
+                if($(this).prev().children().last().css('background-color') === 'rgb(255, 255, 0)') {
+                    $(this).prev().children().last().css('background-color', '');    
+                } else {
+                    $(this).prev().children().last().css('background-color', 'yellow');
+                }
+            });
+
+            $('h3').click(function() {
+                if($(this).next().children().css('font-weight') === 'bold') {
+                    $(this).next().children().each(function() {
+                        $(this).css('font-weight', '');
+                    });
+                } else {
+                    $(this).next().children().each(function() {
+                        $(this).css('font-weight', 'bold');
+                    });
+                }
+            });
+
+            $('li').click(function() {
+                if($(this).parent().children().first().css('color') === 'rgb(0, 0, 255)') {
+                    $(this).parent().children().first().css('color', 'black');
+                } else {
+                    $(this).parent().children().first().css('color', 'blue');
+                }
+            });
+
+            $('#bl').click(function() {
+                var oldLeft = $(this).prev().html();
+                var oldCenter = $(this).parent().next().children().first().html();
+                $(this).prev().html(oldCenter);
+                $(this).parent().next().children().first().html(oldLeft);
+            });
+
+            $('#bc').click(function() {
+                var oldCenter = $(this).prev().html();
+                if(Math.random()<0.5) {
+                    var oldLeft = $(this).parent().prev().children().first().html();
+                    $(this).prev().html(oldLeft);
+                    $(this).parent().prev().children().first().html(oldCenter);
+                } else {
+                    var oldRight = $(this).parent().next().children().first().html();
+                    $(this).prev().html(oldRight);
+                    $(this).parent().next().children().first().html(oldCenter);
+                }
+            });
+
+            $('#br').click(function() {
+                var oldRight = $(this).prev().html();
+                var oldCenter = $(this).parent().prev().children().first().html();
+                $(this).prev().html(oldCenter);
+                $(this).parent().prev().children().first().html(oldRight);
+            });
         });
     </script>
 </body>

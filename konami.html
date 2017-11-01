@@ -6,7 +6,7 @@
 <body>
     <h1 style="text-align: center">Up Up Down Down Left Right Left Right B A Enter</h1>
     <h1 id="last" style="color: white; text-align: center; margin: 35vh 0;">YOU ADDED 30 LIVES!</h1>
-    
+
     <script src="js/jquery-2.2.4.js"></script>
     <script>
         "use strict";
@@ -39,7 +39,7 @@
             for(var i = 0; i < numHearts; i++) {
                 heartArr.push(makeHeart());
             }
-            console.log(heartArr);
+            // console.log(heartArr);
             setInterval(function() {
                 var colorHex = Math.round(Math.sin(x/100)*128+127).toString(16).length === 1 ? 0+Math.round(Math.sin(x/100)*128+127).toString(16) : Math.round(Math.sin(x/100)*128+127).toString(16);
                 $('body').css('background-color','#'+colorHex+colorHex+colorHex);
@@ -59,7 +59,7 @@
                 render: function(t, id) {
                     $('#'+id)
                         .css('top',(Math.sin(((t-this.delay)-100)/50)*50+this.yPos)+1+'px')
-                        .css('right', (((t-this.delay)%screen.width)-100)+'px')
+                        .css('right', (((t-this.delay)%(screen.width+100))-100)+'px')
                         .css('width', (Math.sin(((t-this.delay)/100))*30+70)+'px');
                 }
             };
@@ -67,14 +67,14 @@
 
         $(document).keydown(function(event){
             keyArr.push(event.keyCode);
-            console.log(event.keyCode);
+            // console.log(event.keyCode);
             if(keyArr.length > 11) {
                 keyArr.shift();
             }
             if(keyArr.length == 11) {
                 checkArr();
             }
-            console.log(keyArr);
+            // console.log(keyArr);
         });
     </script>
 </body>
