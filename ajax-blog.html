@@ -40,7 +40,6 @@
             }
 
             function makePost(data) {
-                console.log('making');
                 var labels = '';
                 data.categories.forEach(function(elem) {
                     labels += '<span class="label label-primary">'+elem+'</span>\n'
@@ -71,6 +70,11 @@
             }
 
             $('#refresh').click(getAndUpdate);
+
+            $(window).scroll(function(){
+                console.log("scroll detected");
+                getAndUpdate();
+            });
 
             getAndUpdate();
         })();
