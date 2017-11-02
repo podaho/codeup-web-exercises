@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX Blog</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/order-pizza.css">
+</head>
+<body>
+    <h1 class="text-center">AJAX Blog</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <button class="btn btn-success" style="width: 100%" id="refresh">Refresh Post List</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" id="blog-insert">
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src='js/bootstrap.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script>
+        "use strict";
+
+        (function() {
+            function getAndUpdate() {
+                var jqXhr = $.ajax('data/blog.json');
+                jqXhr.done(function(data) {
+                    $('#blog-insert').html('');
+                    data.forEach(function(elem) {
+                        makePost(elem);
+                    });
+                });
+            }
+
+            function makePost(data) {
+                console.log('making');
+                var labels = '';
+                data.categories.forEach(function(elem) {
+                    labels += '<span class="label label-primary">'+elem+'</span>\n'
+                });
+                var retStr = 
+                '<div class="panel panel-primary">'+
+                    '<div class="panel-heading">'+
+                        '<h2>'+data.title+'</h2> <small><em>'+data.date+'</em></small></div>'+
+                    '<div class="panel-body">'+
+                        '<br>'+
+                        '<p>'+data.content+'</p>'+
+                        '<br>'+
+                        '<div class="row">'+
+                            '<div class="col-md-8 text-left">'+
+                                '<strong>Category: </strong>'+
+                                labels+
+                            '</div>'+
+                            '<div class="col-md-4 text-right">'+
+                                '<div class="btn-group" role="group" aria-label="Comment or Share">'+
+                                    '<button class="btn btn-default" id="clear">Comment</button>'+
+                                    '<button class="btn btn-primary" id="update">Share</button>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+                $('#blog-insert').append(retStr);
+            }
+
+            $('#refresh').click(getAndUpdate);
+
+            getAndUpdate();
+        })();
+    </script>
+</body>
+</html>

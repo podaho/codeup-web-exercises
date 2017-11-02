@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/order-pizza.css">
+</head>
+<body style="background-color:lightGray">
+
+<h1 class="text-center  ">AllTheTools.com</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Tools Listing</div>
+                <div class="panel-body">
+                    <p>GET EM HERE, GET EM QUICK, BEFORE THEY ALL GONE!</p>
+                </div> 
+                <!-- Table -->
+                <table class="table table-striped" id="products">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Categories</th>
+                        </tr>
+                    </thead>
+                    <tbody id="insertProducts"></tbody>
+                </table>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-warning" id="clear">Clear</button>
+                <button class="btn btn-success" id="update">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery-2.2.4.js"></script>
+<script src='js/bootstrap.js'></script>
+<script src='js/bootstrap.min.js'></script>
+<script>
+(function() {
+    "use strict";
+    
+    // TODO: Create an ajax GET request for /data/inventory.json
+    // var jqXhr = $.ajax('data/inventory.json');
+
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+    
+    $(document).ready(function() {
+        function addRow(title, quantity, price, categories) {
+            var str = '<tr>\n\t<td>'+title+'</td>\n\t<td>'+quantity+'</td>\n\t<td>'+price+'</td>\n\t<td>'+categories+'</td>\n</tr>';
+            $('#insertProducts').append(str);
+        }
+
+        function getAndUpdate() {
+            var jqXhr = $.ajax('data/inventory.json');
+            jqXhr.done(function(data) {
+                $('#insertProducts').html('');
+                data.forEach(function(element) {
+                    addRow(element.title, element.quantity, element.price, element.categories.join(', '));
+                });
+            });
+        }
+
+        getAndUpdate();
+
+        $('#update').click(function() {
+            getAndUpdate();
+        });
+
+        $('#clear').click(function() {
+            $('#insertProducts').html('');
+        });
+    });
+})();
+</script>
+
+</body>
+</html>

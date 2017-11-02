@@ -5,11 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jQuery FAQ</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/order-pizza.css">
 </head>
 <body>
     <div id="newsletter" style="height: 80px">
         <h1 id="header">Would you like to sign up for our newsletter? <span id="x">x</span></h1>
     </div>
+    <div style="width:50%; margin: 0 auto; position: fixed; bottom: 10px; right: 10px;" class="alert alert-danger alert-dismissible" id="bootstrap-alert" role="alert">
+        <button id="close-bootstrap-alert" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> Unloading Trojan Virus
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">ANOTHER ANNOYING AD</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Gimme Your Money</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Click Here to Sell Your Soul</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
     <dl>
         <dt>FAQ #1</dt>
         <dd>Yellowstone may not have been the first national park.</dd>
@@ -84,6 +107,8 @@
         <h2>Register for the site now!</h2>
     </div>
     <script src='js/jquery-2.2.4.js'></script>
+    <script src='js/bootstrap.js'></script>
+    <script src='js/bootstrap.min.js'></script>
     <script>
         "use strict";
 
@@ -101,19 +126,28 @@
                 $('.highlighted').css('background-color', 'yellow');
             }
 
+            $('body').click(function() {
+                $('#myModal').modal('show');
+                $('body').unbind('click');
+            });
+
+            $('#bootstrap-alert').hide().fadeIn(800);
+
             $('#ad-banner').hide();
 
-            var intervalId = setInterval(function() {
-                $('#ad-banner').slideDown(1000);
-                clearInterval(intervalId);
-            }, 8000);
+            // var intervalId = setInterval(function() {
+            //     $('#ad-banner').slideDown(1000);
+            //     clearInterval(intervalId);
+            // }, 8000);
+
+            $('#ad-banner').delay(8000).slideDown(1000);
 
             $('#newsletter').hide().slideDown(1000);
 
             $('ul').hide();
 
             $('dd')
-                .addClass('invisible')
+                .addClass('invisible-cstm')
                 .css('display','none');
 
             $('dt')
@@ -183,6 +217,10 @@
 
             $('#ad-banner').click(function() {
                 $(this).slideUp(1000);
+            });
+
+            $('#close-bootstrap-alert').click(function() {
+                $(this).parent().fadeOut(1500);
             });
         });
     </script>
