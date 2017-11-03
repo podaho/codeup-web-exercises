@@ -37,6 +37,11 @@
                         makePost(elem);
                     });
                 });
+                jqXhr.fail(function(jqXhr, status, error) {
+                    console.log("There was an error!");
+                    console.log("status: "+status);
+                    console.log("error: "+error);
+                });
             }
 
             function makePost(data) {
@@ -72,7 +77,6 @@
             $('#refresh').click(getAndUpdate);
 
             $(window).scroll(function(){
-                console.log("scroll detected");
                 getAndUpdate();
             });
 

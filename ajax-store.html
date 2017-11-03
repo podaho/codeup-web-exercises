@@ -56,7 +56,7 @@
     
     $(document).ready(function() {
         function addRow(title, quantity, price, categories) {
-            var str = '<tr>\n\t<td>'+title+'</td>\n\t<td>'+quantity+'</td>\n\t<td>'+price+'</td>\n\t<td>'+categories+'</td>\n</tr>';
+            var str = '<tr>\n\t<td>'+title+'</td>\n\t<td>'+quantity+'</td>\n\t<td>$'+price.toFixed(2)+'</td>\n\t<td>'+categories+'</td>\n</tr>';
             $('#insertProducts').append(str);
         }
 
@@ -67,6 +67,11 @@
                 data.forEach(function(element) {
                     addRow(element.title, element.quantity, element.price, element.categories.join(', '));
                 });
+            });
+            jqXhr.fail(function(jqXhr, status, error) {
+                console.log("There was an error!");
+                console.log("status: "+status);
+                console.log("error: "+error);
             });
         }
 
