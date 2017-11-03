@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/order-pizza.css">
+    <style>
+        .weather-badge {
+            border: 2px solid black;
+            padding-bottom: 20px;
+            background-color: lightblue;
+        }
+        #searchCoord {
+            margin: 20px;
+        }
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">Weather Application</h1>
+    <h2 class="text-center" id="location"></h2>
+    <div class="container">
+        <div id="weather-insert" class="row"></div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Longitude</span>
+                    <input id="input-lon" type="text" class="form-control" placeholder="-74" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2">Latitude</span>
+                    <input id="input-lat" type="text" class="form-control" placeholder="41" aria-describedby="basic-addon2">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5 text-center">
+                <button class="btn btn-primary" id="searchCoord">Search</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5uR5lV2F4v_tIkmtejRIzjTrKZeDHNIk"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src='js/bootstrap.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script>
+        "use strict";
+
+        function toFaren(k) {
+            return (1.8*(k - 273)+32);
+        }
+
+        function toCelc(k) {
+            return (k-273.15);
+        }
+
+        function findMax(arr) {
+            var max = 0;
+            arr.forEach(function(elem) {
+                if(elem > max) {
+                    max = elem;
+                }
+            });
+            return max;
+        }
+
+        function findMin(arr) {
+            var min = 4000;
+            arr.forEach(function(elem) {
+                if(elem < min) {
+                    min = elem;
+                }
+            });
+            return min;
+        }
+
+        function countInArray(arr, x) {
+            var retval = 0;
+            arr.forEach(function(element) {
+                if(element === x) {
+                    retval += 1;
+                }
+            });
+            return retval;
+        }
+
+        function mostFrequentItem(arr) {
+            var largestCount = 0;
+            var holder = "";
+            arr.forEach(function(element) {
+                if(countInArray(arr, element) > largestCount) {
+                    largestCount = countInArray(arr, element);
+                    holder = element;
+                }
+            });
+            return holder;
+        }
+
+        function parseTime(str) {
+            var date = str.split(' ')[0].split('-');
+            var time = str.split(' ')[1].split(':');
+            return {
+                year: date[0],
+                month: date[1],
+                date: date[2],
+                hour: time[0],
+                minute: time[1],
+                second: time[2]
+            };
+        }
+
+        function averageArr(arr) {
+            var sum = 0;
+            arr.forEach(function(element, index, array) {
+                sum += parseInt(element);
+            });
+            return sum/(arr.length);
+        }
+
+        function getInfo(data, timeNum) { //argument is of format Date.getTime() + timeOffset; data is just JSON return array;
+            var tempLows = [];
+            var tempHighs = [];
+            var humidity = [];
+            var wind = [];
+            var pressure = [];
+            var description = [];
+            var icon = [];
+            var today = new Date(timeNum);
+            data.list.forEach(function(element) {
+                var dateObj = parseTime(element.dt_txt);
+                if(dateObj.year === today.getFullYear().toString() && dateObj.month === (today.getMonth()+1).toString() && parseInt(dateObj.date).toString() === today.getDate().toString()) {
+                    tempHighs.push(parseInt(element.main.temp_max));
+                    tempLows.push(parseInt(element.main.temp_min));
+                    humidity.push(parseInt(element.main.humidity));
+                    pressure.push(parseInt(element.main.pressure));
+                    wind.push(parseInt(element.wind.speed));
+                    description.push(element.weather[0].description);
+                    icon.push(element.weather[0].icon.substr(0,2));
+                }
+            });
+            if(!icon) {
+                icon = data.list[0].weather[0].icon;
+            }
+            var retVal = {
+                tempLow: findMin(tempLows),
+                tempHigh: findMax(tempHighs),
+                humidity: averageArr(humidity).toFixed(0),
+                wind: averageArr(wind).toFixed(2),
+                pressure: averageArr(pressure).toFixed(2),
+                description: mostFrequentItem(description),
+                icon: mostFrequentItem(icon)+'d'
+            };
+            //console.log(retVal);
+            return retVal;
+        }
+
+        function makeBadge(today) {
+            if(today.description) {
+                var html = "";
+                html += '<div class="col-md-4 text-center weather-badge">';
+                html += '<h3>'+toFaren(parseInt(today.tempLow)).toFixed(0)+'&deg;F/'+toFaren(parseInt(today.tempHigh)).toFixed(0)+'&deg;F</h3>';
+                html += '<h4><img src="http://openweathermap.org/img/w/'+today.icon+'.png"></h4>';
+                html += '<h4><strong>Clouds:</strong> '+today.description+'</h4>';
+                html += '<h4><strong>Humidity:</strong> '+today.humidity+'</h4>';
+                html += '<h4><strong>Wind:</strong> '+today.wind+'</h4>';
+                html += '<h4><strong>Pressure:</strong> '+today.pressure+'</h4>';
+                html += '</div>';
+                $('#weather-insert').append(html);
+            }
+        }
+
+        function fetch(getObj) {
+            var jqXhr = $.get("http://api.openweathermap.org/data/2.5/forecast", getObj);
+
+            jqXhr.done(function(data) {
+                var date = new Date;
+
+                $('#weather-insert').html('');
+
+                var today = getInfo(data, date.getTime());
+                makeBadge(today);
+
+                var tomorrow = getInfo(data, date.getTime() + 24 * 60 * 60 * 1000);
+                makeBadge(tomorrow);
+
+                var dayAfter = getInfo(data, date.getTime() + 48 * 60 * 60 * 1000);
+                makeBadge(dayAfter);
+            });
+
+            jqXhr.fail(function(jqXhr, status, error) {
+                console.log("There was an error!");
+                console.log("status: "+status);
+                console.log("error: "+error);
+            });
+        }
+
+        function mapConstructor(id, zoom, center, mapType) {
+            var mapOptions = {
+                zoom: zoom,
+                center: center,
+                mapTypeId: mapType
+            };
+
+            return new google.maps.Map(document.getElementById(id), mapOptions);
+        }
+
+        function markerConstructor(position, animation, map) {
+            return new google.maps.Marker({
+                position: position,
+                animation: animation,
+                map: map
+            });
+        }
+
+        var map = mapConstructor(
+            "map",
+            10,
+            { lat: 41, lng: -74},
+            google.maps.MapTypeId.HYBRID
+        );
+
+        var marker;
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            if(marker !== undefined) {
+                marker.setMap(null);
+            }
+            marker = markerConstructor(event.latLng, google.maps.Animation.DROP, map);
+            map.setCenter(marker.position);
+            var options = {
+                APPID: "340467c1a9978f4a8384d02573e98e28",
+                lat: marker.position.lat(),
+                lon: marker.position.lng()
+            };
+            fetch(options);
+            var jqXhr = $.ajax('https://maps.googleapis.com/maps/api/geocode/json?latlng='+marker.position.lat()+','+marker.position.lng()+'&key=AIzaSyB5uR5lV2F4v_tIkmtejRIzjTrKZeDHNIk');
+            jqXhr.done(function(data) {
+                $('#location').html(data.results[2].formatted_address);
+            });
+        });
+
+        $('#searchCoord').click(function() {
+            var options = {
+                APPID: "340467c1a9978f4a8384d02573e98e28",
+                lat: $('#input-lat')[0].value,
+                lon: $('#input-lon')[0].value
+            };
+            if(options.lat && options.lon) {
+                fetch(options);
+            }
+        });
+    </script>
+</body>
+</html>
