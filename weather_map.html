@@ -11,8 +11,9 @@
             padding-bottom: 20px;
             background-color: lightblue;
         }
-        #searchCoord {
-            margin: 20px;
+        .searchInputs {
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         #map {
             width: 100%;
@@ -27,26 +28,137 @@
         <div id="weather-insert" class="row"></div>
         <hr>
         <div class="row">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-2 searchInputs">
+                <div class="input-group text-left">
+                    <label class="radio-inline"><strong>Select Units: </strong></label>
+                    <label class="radio-inline"><input type="radio" name="unitsRadio" value="f">&deg;F</label>
+                    <label class="radio-inline"><input type="radio" name="unitsRadio" value="c">&deg;C</label>
+                </div>
+            </div>
+            <div class="col-md-4 searchInputs">
+                <div class="input-group text-left">
+                    <label class="radio-inline"><strong># Days: </strong></label>
+                    <label class="radio-inline"><input type="radio" name="daysRadio">3</label>
+                    <label class="radio-inline"><input type="radio" name="daysRadio">4</label>
+                    <label class="radio-inline"><input type="radio" name="daysRadio">5</label>
+                    <label class="radio-inline"><input type="radio" name="daysRadio">6</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 searchInputs">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Longitude</span>
                     <input id="input-lon" type="text" class="form-control" placeholder="-74" aria-describedby="basic-addon1">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 searchInputs">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon2">Latitude</span>
                     <input id="input-lat" type="text" class="form-control" placeholder="41" aria-describedby="basic-addon2">
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-5 text-center">
+            <div class="col-md-2 text-left searchInputs">
                 <button class="btn btn-primary" id="searchCoord">Search</button>
             </div>
         </div>
+        <hr>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
+            <div class="col-md-8 col-md-offset-2 searchInputs">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon3">Address</span>
+                    <input id="address" type="text" class="form-control" placeholder="One Trinity Pl." aria-describedby="basic-addon2">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 searchInputs">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4">City</span>
+                    <input id="city" type="text" class="form-control" placeholder="San Antonio" aria-describedby="basic-addon4">
+                </div>
+            </div>
+            <div class="col-md-2 searchInputs">
+                <div class="input-group dropdown">
+                    <span class="input-group-addon" id="basic-addon5">State</span>
+                    <select id="state" class="form-control">
+                        <option>AL</option>
+                        <option>AK</option>
+                        <option>AZ</option>
+                        <option>AR</option>
+                        <option>CA</option>
+                        <option>CO</option>
+                        <option>CT</option>
+                        <option>DE</option>
+                        <option>DC</option>
+                        <option>FL</option>
+                        <option>GA</option>
+                        <option>HI</option>
+                        <option>ID</option>
+                        <option>IL</option>
+                        <option>IN</option>
+                        <option>IA</option>
+                        <option>KS</option>
+                        <option>KY</option>
+                        <option>LA</option>
+                        <option>ME</option>
+                        <option>MD</option>
+                        <option>MA</option>
+                        <option>MI</option>
+                        <option>MN</option>
+                        <option>MS</option>
+                        <option>MO</option>
+                        <option>MT</option>
+                        <option>NE</option>
+                        <option>NV</option>
+                        <option>NH</option>
+                        <option>NJ</option>
+                        <option>NM</option>
+                        <option>NY</option>
+                        <option>NC</option>
+                        <option>ND</option>
+                        <option>OH</option>
+                        <option>OK</option>
+                        <option>OR</option>
+                        <option>PA</option>
+                        <option>RI</option>
+                        <option>SC</option>
+                        <option>SD</option>
+                        <option>TN</option>
+                        <option>TX</option>
+                        <option>UT</option>
+                        <option>VT</option>
+                        <option>VA</option>
+                        <option>WA</option>
+                        <option>WV</option>
+                        <option>WI</option>
+                        <option>WY</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 searchInputs">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon6">Zip</span>
+                    <input id="zip" type="text" class="form-control" placeholder="78212" aria-describedby="basic-addon6">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 searchInputs">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon7">Country</span>
+                    <input id="country" type="text" class="form-control" placeholder="United States of America" aria-describedby="basic-addon7">
+                </div>
+            </div>
+            <div class="col-md-2 text-left searchInputs">
+                <button class="btn btn-primary" id="searchAddress">Search</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 text-center">
                 <div id="map"></div>
             </div>
         </div>
@@ -168,11 +280,11 @@
             return retVal;
         }
 
-        function makeBadge(today) {
+        function makeBadge(today, option) { //0 for celcius, 1 for farenheit
             if(today.description) {
                 var html = "";
                 html += '<div class="col-md-4 text-center weather-badge">';
-                html += '<h3>'+toFaren(parseInt(today.tempLow)).toFixed(0)+'&deg;F/'+toFaren(parseInt(today.tempHigh)).toFixed(0)+'&deg;F</h3>';
+                html += (option === 0) ? '<h3>'+toCelc(parseInt(today.tempLow)).toFixed(0)+'&deg;C/'+toCelc(parseInt(today.tempHigh)).toFixed(0)+'&deg;C</h3>' : '<h3>'+toFaren(parseInt(today.tempLow)).toFixed(0)+'&deg;F/'+toFaren(parseInt(today.tempHigh)).toFixed(0)+'&deg;F</h3>';
                 html += '<h4><img src="http://openweathermap.org/img/w/'+today.icon+'.png"></h4>';
                 html += '<h4><strong>Clouds:</strong> '+today.description+'</h4>';
                 html += '<h4><strong>Humidity:</strong> '+today.humidity+'</h4>';
@@ -183,7 +295,7 @@
             }
         }
 
-        function fetch(getObj) {
+        function fetch(getObj, option) { //0 for celcius, 1 for farenheit
             var jqXhr = $.get("http://api.openweathermap.org/data/2.5/forecast", getObj);
 
             jqXhr.done(function(data) {
@@ -192,13 +304,13 @@
                 $('#weather-insert').html('');
 
                 var today = getInfo(data, date.getTime());
-                makeBadge(today);
+                makeBadge(today, option);
 
                 var tomorrow = getInfo(data, date.getTime() + 24 * 60 * 60 * 1000);
-                makeBadge(tomorrow);
+                makeBadge(tomorrow, option);
 
                 var dayAfter = getInfo(data, date.getTime() + 48 * 60 * 60 * 1000);
-                makeBadge(dayAfter);
+                makeBadge(dayAfter, option);
             });
 
             jqXhr.fail(function(jqXhr, status, error) {
@@ -232,13 +344,14 @@
             { lat: 41, lng: -74},
             google.maps.MapTypeId.HYBRID
         );
-
+        var option = 0;
         var marker;
 
         google.maps.event.addListener(map, 'click', function(event) {
             if(marker !== undefined) {
                 marker.setMap(null);
             }
+            //console.log(event.latLng);
             marker = markerConstructor(event.latLng, google.maps.Animation.DROP, map);
             map.setCenter(marker.position);
             var options = {
@@ -248,10 +361,16 @@
             };
             $('#input-lon')[0].value = marker.position.lng();
             $('#input-lat')[0].value = marker.position.lat();
-            fetch(options);
+            fetch(options, option);
             var jqXhr = $.ajax('https://maps.googleapis.com/maps/api/geocode/json?latlng='+marker.position.lat()+','+marker.position.lng()+'&key=AIzaSyB5uR5lV2F4v_tIkmtejRIzjTrKZeDHNIk');
             jqXhr.done(function(data) {
+                console.log(data);
                 $('#location').html(data.results[2].formatted_address);
+                $('#address')[0].value = data.results[0].address_components[0].long_name+" "+data.results[0].address_components[1].long_name;
+                (data.results[2].address_components[2].long_name) ? $('#city')[0].value = data.results[2].address_components[2].long_name : $('#city')[0].value = "No City Value";
+                (data.results[3].address_components[data.results[3].address_components.length - 2].short_name) ? $('#state')[0].value = data.results[3].address_components[1].short_name : $('#state')[0].value = "";
+                $('#zip')[0].value = data.results[1].address_components[0].long_name;
+                $('#country')[0].value = data.results[data.results.length - 1].address_components[0].long_name;
             });
         });
 
@@ -261,10 +380,73 @@
                 lat: $('#input-lat')[0].value,
                 lon: $('#input-lon')[0].value
             };
+            if(marker !== undefined) {
+                marker.setMap(null);
+            }
+            marker = markerConstructor({ lat: parseInt($('#input-lat')[0].value), lng: parseInt($('#input-lon')[0].value) }, google.maps.Animation.DROP, map);
+            map.setCenter(marker.position);
             if(options.lat && options.lon) {
-                fetch(options);
+                fetch(options, option);
             }
         });
+
+        $('#searchAddress').click(function() {
+            var geocoder = new google.maps.Geocoder();
+            var latitude;
+            var longitude;
+            var address = "";
+            address += $.trim($('#address')[0].value)+", ";
+            address += $.trim($('#city')[0].value)+", ";
+            address += $('#state')[0].value+" ";
+            address += $('#zip')[0].value;
+            address += ($('#country')[0]) ? (', '+$('#country')[0].value) : '';
+            console.log(address);
+            geocoder.geocode({ "address": address }, function(results, status) {
+                if(status == google.maps.GeocoderStatus.OK) {
+                    latitude = results[0].geometry.location.lat();
+                    longitude = results[0].geometry.location.lng();
+                    var options = {
+                        APPID: "340467c1a9978f4a8384d02573e98e28",
+                        lat: latitude,
+                        lon: longitude
+                    };
+                    $('#input-lon')[0].value = longitude;
+                    $('#input-lat')[0].value = latitude;
+                    $('#location').html($.trim($('#city')[0].value)+", "+$('#state')[0].value+", "+$.trim($('#country')[0].value));
+                    if(marker !== undefined) {
+                        marker.setMap(null);
+                    }
+                    marker = markerConstructor({ lat: latitude, lng: longitude }, google.maps.Animation.DROP, map);
+                    map.setCenter(marker.position);
+                    if(options.lat && options.lon) {
+                        fetch(options, option);
+                    }
+                } else {
+                    alert('Geocoding '+location.address+' Failure -- STATUS: '+status);
+                }
+            });
+        });
+
+        $('input[name="unitsRadio"]').click(function(event) {
+            if(marker) {
+                var options = {
+                    APPID: "340467c1a9978f4a8384d02573e98e28",
+                    lat: marker.position.lat(),
+                    lon: marker.position.lng()
+                };
+                if(event.target.value === 'c') {
+                    if(options.lat && options.lon) {
+                        option = 0;
+                        fetch(options, option);
+                    }
+                } else {
+                    if(options.lat && options.lon) {
+                        option = 1;
+                        fetch(options, option);
+                    }
+                }
+            }
+        })
     </script>
 </body>
 </html>
