@@ -246,6 +246,8 @@
                 lat: marker.position.lat(),
                 lon: marker.position.lng()
             };
+            $('#input-lon')[0].value = marker.position.lng();
+            $('#input-lat')[0].value = marker.position.lat();
             fetch(options);
             var jqXhr = $.ajax('https://maps.googleapis.com/maps/api/geocode/json?latlng='+marker.position.lat()+','+marker.position.lng()+'&key=AIzaSyB5uR5lV2F4v_tIkmtejRIzjTrKZeDHNIk');
             jqXhr.done(function(data) {
