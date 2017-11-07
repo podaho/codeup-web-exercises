@@ -5,21 +5,7 @@
     <title>Weather Map</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/order-pizza.css">
-    <style>
-        .weather-badge {
-            border: 2px solid black;
-            padding-bottom: 20px;
-            background-color: lightblue;
-        }
-        .searchInputs {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        #map {
-            width: 100%;
-            height: 500px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/weather_map.css">
 </head>
 <body>
     <h1 class="text-center">Weather Application</h1>
@@ -28,132 +14,190 @@
         <div id="weather-insert" class="row"></div>
         <hr>
         <div class="row">
-            <div class="col-md-4 col-md-offset-2 searchInputs">
-                <div class="input-group text-left">
-                    <label class="radio-inline"><strong>Select Units: </strong></label>
-                    <label class="radio-inline"><input type="radio" name="unitsRadio" value="f">&deg;F</label>
-                    <label class="radio-inline"><input type="radio" name="unitsRadio" value="c">&deg;C</label>
+            <div class="col-md-6 text-left">
+                <h4>Display Options</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="more-dropdown-btn" id="display-options-toggle">
+                    <em>More</em><span class="glyphicon glyphicon-chevron-up icon-left-space" aria-hidden="true"></span>
                 </div>
             </div>
-            <div class="col-md-4 searchInputs">
-                <div class="input-group text-left">
-                    <label class="radio-inline"><strong># Days: </strong></label>
-                    <label class="radio-inline"><input type="radio" name="daysRadio">3</label>
-                    <label class="radio-inline"><input type="radio" name="daysRadio">4</label>
-                    <label class="radio-inline"><input type="radio" name="daysRadio">5</label>
-                    <label class="radio-inline"><input type="radio" name="daysRadio">6</label>
+        </div>
+        <div id="display-options-form">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 searchInputs">
+                    <div class="input-group text-left">
+                        <label class="radio-inline"><strong>Select Units: </strong></label>
+                        <label class="radio-inline"><input type="radio" name="unitsRadio" value="f">&deg;F</label>
+                        <label class="radio-inline"><input type="radio" name="unitsRadio" value="c" checked>&deg;C</label>
+                    </div>
+                </div>
+                <div class="col-md-4 searchInputs">
+                    <div class="input-group text-left">
+                        <label class="radio-inline"><strong># Days: </strong></label>
+                        <label class="radio-inline"><input type="radio" name="daysRadio" value="3" checked>3</label>
+                        <label class="radio-inline"><input type="radio" name="daysRadio" value="4">4</label>
+                        <label class="radio-inline"><input type="radio" name="daysRadio" value="5">5</label>
+                        <label class="radio-inline"><input type="radio" name="daysRadio" value="6">6</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 searchInputs">
+                    <div class="input-group text-left checkbox">
+                        <label class="radio-inline"><strong>Select Units: </strong></label>
+                        <label class="display-check">
+                            <input class="display-select" type="checkbox" value="temp" checked> Hi/Lo Temperature
+                        </label>
+                        <label class="display-check">
+                            <input class="display-select" type="checkbox" value="clouds" checked> Clouds
+                        </label>
+                        <label class="display-check">
+                            <input class="display-select" type="checkbox" value="humidity" checked> Humidity
+                        </label>
+                        <label class="display-check">
+                            <input class="display-select" type="checkbox" value="wind" checked> Wind
+                        </label>
+                        <label class="display-check">
+                            <input class="display-select" type="checkbox" value="pressure" checked> Pressure
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-4 col-md-offset-2 searchInputs">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Longitude</span>
-                    <input id="input-lon" type="text" class="form-control" placeholder="-74" aria-describedby="basic-addon1">
+            <div class="col-md-6 text-left">
+                <h4>Longitude Latitude Search</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="more-dropdown-btn" id="lon-lat-toggle">
+                    <em>More</em><span class="glyphicon glyphicon-chevron-up icon-left-space" aria-hidden="true"></span>
                 </div>
             </div>
-            <div class="col-md-4 searchInputs">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon2">Latitude</span>
-                    <input id="input-lat" type="text" class="form-control" placeholder="41" aria-describedby="basic-addon2">
+        </div>
+        <div id="lon-lat-form">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 searchInputs">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Longitude</span>
+                        <input id="input-lon" type="text" class="form-control" placeholder="-74" aria-describedby="basic-addon1">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2 text-left searchInputs">
-                <button class="btn btn-primary" id="searchCoord">Search</button>
+                <div class="col-md-4 searchInputs">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2">Latitude</span>
+                        <input id="input-lat" type="text" class="form-control" placeholder="41" aria-describedby="basic-addon2">
+                    </div>
+                </div>
+                <div class="col-md-2 text-left searchInputs">
+                    <button class="btn btn-primary" id="searchCoord">Search</button>
+                </div>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 searchInputs">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon3">Address</span>
-                    <input id="address" type="text" class="form-control" placeholder="One Trinity Pl." aria-describedby="basic-addon2">
+            <div class="col-md-6 text-left">
+                <h4>Address Search</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="more-dropdown-btn" id="address-search-toggle">
+                    <em>More</em><span class="glyphicon glyphicon-chevron-up icon-left-space" aria-hidden="true"></span>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2 searchInputs">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon4">City</span>
-                    <input id="city" type="text" class="form-control" placeholder="San Antonio" aria-describedby="basic-addon4">
+        <div id="address-search-form">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 searchInputs">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">Address</span>
+                        <input id="address" type="text" class="form-control" placeholder="One Trinity Pl." aria-describedby="basic-addon2">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2 searchInputs">
-                <div class="input-group dropdown">
-                    <span class="input-group-addon" id="basic-addon5">State</span>
-                    <select id="state" class="form-control">
-                        <option>AL</option>
-                        <option>AK</option>
-                        <option>AZ</option>
-                        <option>AR</option>
-                        <option>CA</option>
-                        <option>CO</option>
-                        <option>CT</option>
-                        <option>DE</option>
-                        <option>DC</option>
-                        <option>FL</option>
-                        <option>GA</option>
-                        <option>HI</option>
-                        <option>ID</option>
-                        <option>IL</option>
-                        <option>IN</option>
-                        <option>IA</option>
-                        <option>KS</option>
-                        <option>KY</option>
-                        <option>LA</option>
-                        <option>ME</option>
-                        <option>MD</option>
-                        <option>MA</option>
-                        <option>MI</option>
-                        <option>MN</option>
-                        <option>MS</option>
-                        <option>MO</option>
-                        <option>MT</option>
-                        <option>NE</option>
-                        <option>NV</option>
-                        <option>NH</option>
-                        <option>NJ</option>
-                        <option>NM</option>
-                        <option>NY</option>
-                        <option>NC</option>
-                        <option>ND</option>
-                        <option>OH</option>
-                        <option>OK</option>
-                        <option>OR</option>
-                        <option>PA</option>
-                        <option>RI</option>
-                        <option>SC</option>
-                        <option>SD</option>
-                        <option>TN</option>
-                        <option>TX</option>
-                        <option>UT</option>
-                        <option>VT</option>
-                        <option>VA</option>
-                        <option>WA</option>
-                        <option>WV</option>
-                        <option>WI</option>
-                        <option>WY</option>
-                        <option>Other</option>
-                    </select>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 searchInputs">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon4">City</span>
+                        <input id="city" type="text" class="form-control" placeholder="San Antonio" aria-describedby="basic-addon4">
+                    </div>
+                </div>
+                <div class="col-md-2 searchInputs">
+                    <div class="input-group dropdown">
+                        <span class="input-group-addon" id="basic-addon5">State</span>
+                        <select id="state" class="form-control">
+                            <option>AL</option>
+                            <option>AK</option>
+                            <option>AZ</option>
+                            <option>AR</option>
+                            <option>CA</option>
+                            <option>CO</option>
+                            <option>CT</option>
+                            <option>DE</option>
+                            <option>DC</option>
+                            <option>FL</option>
+                            <option>GA</option>
+                            <option>HI</option>
+                            <option>ID</option>
+                            <option>IL</option>
+                            <option>IN</option>
+                            <option>IA</option>
+                            <option>KS</option>
+                            <option>KY</option>
+                            <option>LA</option>
+                            <option>ME</option>
+                            <option>MD</option>
+                            <option>MA</option>
+                            <option>MI</option>
+                            <option>MN</option>
+                            <option>MS</option>
+                            <option>MO</option>
+                            <option>MT</option>
+                            <option>NE</option>
+                            <option>NV</option>
+                            <option>NH</option>
+                            <option>NJ</option>
+                            <option>NM</option>
+                            <option>NY</option>
+                            <option>NC</option>
+                            <option>ND</option>
+                            <option>OH</option>
+                            <option>OK</option>
+                            <option>OR</option>
+                            <option>PA</option>
+                            <option>RI</option>
+                            <option>SC</option>
+                            <option>SD</option>
+                            <option>TN</option>
+                            <option>TX</option>
+                            <option>UT</option>
+                            <option>VT</option>
+                            <option>VA</option>
+                            <option>WA</option>
+                            <option>WV</option>
+                            <option>WI</option>
+                            <option>WY</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 searchInputs">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon6">Zip</span>
+                        <input id="zip" type="text" class="form-control" placeholder="78212" aria-describedby="basic-addon6">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2 searchInputs">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon6">Zip</span>
-                    <input id="zip" type="text" class="form-control" placeholder="78212" aria-describedby="basic-addon6">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 searchInputs">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon7">Country</span>
+                        <input id="country" type="text" class="form-control" placeholder="United States of America" aria-describedby="basic-addon7">
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 searchInputs">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon7">Country</span>
-                    <input id="country" type="text" class="form-control" placeholder="United States of America" aria-describedby="basic-addon7">
+                <div class="col-md-2 text-left searchInputs">
+                    <button class="btn btn-primary" id="searchAddress">Search</button>
                 </div>
-            </div>
-            <div class="col-md-2 text-left searchInputs">
-                <button class="btn btn-primary" id="searchAddress">Search</button>
             </div>
         </div>
         <hr>
@@ -169,284 +213,6 @@
     <script src="js/jquery-2.2.4.js"></script>
     <script src='js/bootstrap.js'></script>
     <script src='js/bootstrap.min.js'></script>
-    <script>
-        "use strict";
-
-        function toFaren(k) {
-            return (1.8*(k - 273)+32);
-        }
-
-        function toCelc(k) {
-            return (k-273.15);
-        }
-
-        function findMax(arr) {
-            var max = 0;
-            arr.forEach(function(elem) {
-                if(elem > max) {
-                    max = elem;
-                }
-            });
-            return max;
-        }
-
-        function findMin(arr) {
-            var min = 4000;
-            arr.forEach(function(elem) {
-                if(elem < min) {
-                    min = elem;
-                }
-            });
-            return min;
-        }
-
-        function countInArray(arr, x) {
-            var retval = 0;
-            arr.forEach(function(element) {
-                if(element === x) {
-                    retval += 1;
-                }
-            });
-            return retval;
-        }
-
-        function mostFrequentItem(arr) {
-            var largestCount = 0;
-            var holder = "";
-            arr.forEach(function(element) {
-                if(countInArray(arr, element) > largestCount) {
-                    largestCount = countInArray(arr, element);
-                    holder = element;
-                }
-            });
-            return holder;
-        }
-
-        function parseTime(str) {
-            var date = str.split(' ')[0].split('-');
-            var time = str.split(' ')[1].split(':');
-            return {
-                year: date[0],
-                month: date[1],
-                date: date[2],
-                hour: time[0],
-                minute: time[1],
-                second: time[2]
-            };
-        }
-
-        function averageArr(arr) {
-            var sum = 0;
-            arr.forEach(function(element, index, array) {
-                sum += parseInt(element);
-            });
-            return sum/(arr.length);
-        }
-
-        function getInfo(data, timeNum) { //argument is of format Date.getTime() + timeOffset; data is just JSON return array;
-            var tempLows = [];
-            var tempHighs = [];
-            var humidity = [];
-            var wind = [];
-            var pressure = [];
-            var description = [];
-            var icon = [];
-            var today = new Date(timeNum);
-            data.list.forEach(function(element) {
-                var dateObj = parseTime(element.dt_txt);
-                if(dateObj.year === today.getFullYear().toString() && dateObj.month === (today.getMonth()+1).toString() && parseInt(dateObj.date).toString() === today.getDate().toString()) {
-                    tempHighs.push(parseInt(element.main.temp_max));
-                    tempLows.push(parseInt(element.main.temp_min));
-                    humidity.push(parseInt(element.main.humidity));
-                    pressure.push(parseInt(element.main.pressure));
-                    wind.push(parseInt(element.wind.speed));
-                    description.push(element.weather[0].description);
-                    icon.push(element.weather[0].icon.substr(0,2));
-                }
-            });
-            if(!icon) {
-                icon = data.list[0].weather[0].icon;
-            }
-            var retVal = {
-                tempLow: findMin(tempLows),
-                tempHigh: findMax(tempHighs),
-                humidity: averageArr(humidity).toFixed(0),
-                wind: averageArr(wind).toFixed(2),
-                pressure: averageArr(pressure).toFixed(2),
-                description: mostFrequentItem(description),
-                icon: mostFrequentItem(icon)+'d'
-            };
-            //console.log(retVal);
-            return retVal;
-        }
-
-        function makeBadge(today, option) { //0 for celcius, 1 for farenheit
-            if(today.description) {
-                var html = "";
-                html += '<div class="col-md-4 text-center weather-badge">';
-                html += (option === 0) ? '<h3>'+toCelc(parseInt(today.tempLow)).toFixed(0)+'&deg;C/'+toCelc(parseInt(today.tempHigh)).toFixed(0)+'&deg;C</h3>' : '<h3>'+toFaren(parseInt(today.tempLow)).toFixed(0)+'&deg;F/'+toFaren(parseInt(today.tempHigh)).toFixed(0)+'&deg;F</h3>';
-                html += '<h4><img src="http://openweathermap.org/img/w/'+today.icon+'.png"></h4>';
-                html += '<h4><strong>Clouds:</strong> '+today.description+'</h4>';
-                html += '<h4><strong>Humidity:</strong> '+today.humidity+'</h4>';
-                html += '<h4><strong>Wind:</strong> '+today.wind+'</h4>';
-                html += '<h4><strong>Pressure:</strong> '+today.pressure+'</h4>';
-                html += '</div>';
-                $('#weather-insert').append(html);
-            }
-        }
-
-        function fetch(getObj, option) { //0 for celcius, 1 for farenheit
-            var jqXhr = $.get("http://api.openweathermap.org/data/2.5/forecast", getObj);
-
-            jqXhr.done(function(data) {
-                var date = new Date;
-
-                $('#weather-insert').html('');
-
-                var today = getInfo(data, date.getTime());
-                makeBadge(today, option);
-
-                var tomorrow = getInfo(data, date.getTime() + 24 * 60 * 60 * 1000);
-                makeBadge(tomorrow, option);
-
-                var dayAfter = getInfo(data, date.getTime() + 48 * 60 * 60 * 1000);
-                makeBadge(dayAfter, option);
-            });
-
-            jqXhr.fail(function(jqXhr, status, error) {
-                console.log("There was an error!");
-                console.log("status: "+status);
-                console.log("error: "+error);
-            });
-        }
-
-        function mapConstructor(id, zoom, center, mapType) {
-            var mapOptions = {
-                zoom: zoom,
-                center: center,
-                mapTypeId: mapType
-            };
-
-            return new google.maps.Map(document.getElementById(id), mapOptions);
-        }
-
-        function markerConstructor(position, animation, map) {
-            return new google.maps.Marker({
-                position: position,
-                animation: animation,
-                map: map
-            });
-        }
-
-        var map = mapConstructor(
-            "map",
-            10,
-            { lat: 41, lng: -74},
-            google.maps.MapTypeId.HYBRID
-        );
-        var option = 0;
-        var marker;
-
-        google.maps.event.addListener(map, 'click', function(event) {
-            if(marker !== undefined) {
-                marker.setMap(null);
-            }
-            //console.log(event.latLng);
-            marker = markerConstructor(event.latLng, google.maps.Animation.DROP, map);
-            map.setCenter(marker.position);
-            var options = {
-                APPID: "340467c1a9978f4a8384d02573e98e28",
-                lat: marker.position.lat(),
-                lon: marker.position.lng()
-            };
-            $('#input-lon')[0].value = marker.position.lng();
-            $('#input-lat')[0].value = marker.position.lat();
-            fetch(options, option);
-            var jqXhr = $.ajax('https://maps.googleapis.com/maps/api/geocode/json?latlng='+marker.position.lat()+','+marker.position.lng()+'&key=AIzaSyB5uR5lV2F4v_tIkmtejRIzjTrKZeDHNIk');
-            jqXhr.done(function(data) {
-                console.log(data);
-                $('#location').html(data.results[2].formatted_address);
-                $('#address')[0].value = data.results[0].address_components[0].long_name+" "+data.results[0].address_components[1].long_name;
-                (data.results[2].address_components[2].long_name) ? $('#city')[0].value = data.results[2].address_components[2].long_name : $('#city')[0].value = "No City Value";
-                (data.results[3].address_components[data.results[3].address_components.length - 2].short_name) ? $('#state')[0].value = data.results[3].address_components[1].short_name : $('#state')[0].value = "";
-                $('#zip')[0].value = data.results[1].address_components[0].long_name;
-                $('#country')[0].value = data.results[data.results.length - 1].address_components[0].long_name;
-            });
-        });
-
-        $('#searchCoord').click(function() {
-            var options = {
-                APPID: "340467c1a9978f4a8384d02573e98e28",
-                lat: $('#input-lat')[0].value,
-                lon: $('#input-lon')[0].value
-            };
-            if(marker !== undefined) {
-                marker.setMap(null);
-            }
-            marker = markerConstructor({ lat: parseInt($('#input-lat')[0].value), lng: parseInt($('#input-lon')[0].value) }, google.maps.Animation.DROP, map);
-            map.setCenter(marker.position);
-            if(options.lat && options.lon) {
-                fetch(options, option);
-            }
-        });
-
-        $('#searchAddress').click(function() {
-            var geocoder = new google.maps.Geocoder();
-            var latitude;
-            var longitude;
-            var address = "";
-            address += $.trim($('#address')[0].value)+", ";
-            address += $.trim($('#city')[0].value)+", ";
-            address += $('#state')[0].value+" ";
-            address += $('#zip')[0].value;
-            address += ($('#country')[0]) ? (', '+$('#country')[0].value) : '';
-            console.log(address);
-            geocoder.geocode({ "address": address }, function(results, status) {
-                if(status == google.maps.GeocoderStatus.OK) {
-                    latitude = results[0].geometry.location.lat();
-                    longitude = results[0].geometry.location.lng();
-                    var options = {
-                        APPID: "340467c1a9978f4a8384d02573e98e28",
-                        lat: latitude,
-                        lon: longitude
-                    };
-                    $('#input-lon')[0].value = longitude;
-                    $('#input-lat')[0].value = latitude;
-                    $('#location').html($.trim($('#city')[0].value)+", "+$('#state')[0].value+", "+$.trim($('#country')[0].value));
-                    if(marker !== undefined) {
-                        marker.setMap(null);
-                    }
-                    marker = markerConstructor({ lat: latitude, lng: longitude }, google.maps.Animation.DROP, map);
-                    map.setCenter(marker.position);
-                    if(options.lat && options.lon) {
-                        fetch(options, option);
-                    }
-                } else {
-                    alert('Geocoding '+location.address+' Failure -- STATUS: '+status);
-                }
-            });
-        });
-
-        $('input[name="unitsRadio"]').click(function(event) {
-            if(marker) {
-                var options = {
-                    APPID: "340467c1a9978f4a8384d02573e98e28",
-                    lat: marker.position.lat(),
-                    lon: marker.position.lng()
-                };
-                if(event.target.value === 'c') {
-                    if(options.lat && options.lon) {
-                        option = 0;
-                        fetch(options, option);
-                    }
-                } else {
-                    if(options.lat && options.lon) {
-                        option = 1;
-                        fetch(options, option);
-                    }
-                }
-            }
-        })
-    </script>
+    <script src='js/weather_map.js'></script>
 </body>
 </html>

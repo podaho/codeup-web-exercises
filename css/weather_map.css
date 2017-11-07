@@ -1,0 +1,41 @@
+.weather-badge {
+    border: 2px solid black;
+    padding-bottom: 20px;
+    background-color: lightblue;
+}
+
+.searchInputs {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+}
+
+.dayNum {
+    color: gray;
+}
+
+.display-check {
+    margin-left: 20px;
+}
+
+.more-dropdown-btn {
+    margin-top: 13px;
+}
+
+.icon-left-space {
+    margin-left: 7px;
+}
+
+.more-dropdown-btn {
+    color: darkgray;
+}
+
+.more-dropdown-btn:hover {
+    text-decoration: underline;
+    font-weight: bolder;
+    cursor: pointer;
+}
