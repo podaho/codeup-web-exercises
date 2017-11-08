@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+}
+h1, h3 {
+    color: white
+}
+#red {
+    background-color: darkred;
+    margin-top: 5vh;
+}
+#yellow {
+    background-color: darkgoldenrod;
+    margin-top: 5vh;
+}
+#green {
+    background-color: darkgreen;
+}
+#blue {
+    background-color: darkblue;
+}
+#play {
+    margin-top: 20px;
+}
