@@ -40,14 +40,18 @@ $(document).ready(function() {
     }
 
     function mostFrequentItem(arr) {
-        var largestCount = 0;
-        var holder = "";
+        var largestCount = 0; //this represents frequency an item appears in arr
+        var holder = ""; //this represents the 'item' with the largest frequency in arr
         arr.forEach(function (element) {
+            //we are not out of array elements
             if (countInArray(arr, element) > largestCount) {
+                //element is currently the largest frequency item
+                //elements frequency is larger than the largestCount variable
                 largestCount = countInArray(arr, element);
                 holder = element;
             }
         });
+        //when we are out of array elements
         return holder;
     }
 
