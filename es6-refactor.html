@@ -89,8 +89,9 @@
 
         let showBtn = $(`#showBtn`);
         showBtn.on(`click`, () => {
-            for (var i = 0; i < listItems.length; i += 1) {
-                listItems[i].innerHTML = buildMovieHTML(movies[i]);
+            let i = 0;
+            for (let listItem of listItems) {
+                listItem.innerHTML = buildMovieHTML(movies[i++]);
             }
         });
 
